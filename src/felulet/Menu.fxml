@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="274.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="felulet.MenuController">
+   <children>
+      <Button fx:id="btnJatekInditasa" layoutX="73.0" layoutY="49.0" mnemonicParsing="false" onAction="#Indit" prefHeight="31.0" prefWidth="128.0" text="A játék indítása" />
+      <Button fx:id="btnSzabalyzat" layoutX="73.0" layoutY="96.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="128.0" text="A játék szabályai" />
+      <Button fx:id="btnRanglista" layoutX="73.0" layoutY="135.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="128.0" text="Ranglista" />
+      <Button fx:id="btnBeallitasok" layoutX="73.0" layoutY="182.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="128.0" text="Beállítások" />
+      <Button fx:id="btnKilepes" layoutX="73.0" layoutY="229.0" mnemonicParsing="false" onAction="#Bezar" prefHeight="31.0" prefWidth="128.0" text="Kilépés" />
+   </children>
+</Pane>
