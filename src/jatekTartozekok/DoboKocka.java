@@ -11,8 +11,7 @@ public class DoboKocka
         this.ertek = 0;
     }
 
-    public int getDobas(){
-        return this.ertek=randomSzam.nextInt(7-1)+1;
+    public int getDobas(){ return this.ertek=randomSzam.nextInt(7-1)+1;
     }
 
 }

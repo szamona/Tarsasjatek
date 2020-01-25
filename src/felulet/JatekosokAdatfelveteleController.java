@@ -52,6 +52,7 @@ public class JatekosokAdatfelveteleController implements Initializable {
 
             Stage stage = new Stage();
             stage.setTitle("Tarsasjatek");
+            stage.setFullScreen(true);
             stage.setScene(new Scene(root1));
             stage.show();
 

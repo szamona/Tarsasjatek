@@ -1,28 +1,29 @@
 package tabla.mezo;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class Mezo
+public abstract class Mezo extends ImageView
 {
-    protected String mezoId;
-    protected String kepId;
     protected boolean szabad;
+    protected Image kep;
     protected List<Mezo> szomszedosMezok;
 
-    public Mezo(String mezoId)
+    public Mezo()
     {
-        this.mezoId = mezoId;
         this.szabad = true;
-        this.kepId ="";
         this.szomszedosMezok= new LinkedList<Mezo>();
     }
+
+    public Image getKep() { return kep; }
+
+    public void setKep(Image kep) { this.kep = kep; }
 
     public boolean isSzabad() { return szabad; }
 
     public void setSzabad(boolean szabad) { this.szabad = szabad; }
-
-    public void kepHozzaad(String id){ this.kepId=id; }
 
     public abstract void MezoHozzaad(Mezo m);
 

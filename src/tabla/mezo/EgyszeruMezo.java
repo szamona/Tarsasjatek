@@ -1,9 +1,11 @@
 package tabla.mezo;
 
+import javafx.scene.image.Image;
+
 public class EgyszeruMezo extends Mezo
 {
 
-    public EgyszeruMezo(String mezoId) { super(mezoId); }
+    public EgyszeruMezo() { }
 
     @Override
     public void MezoHozzaad(Mezo m)

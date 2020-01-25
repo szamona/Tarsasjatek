@@ -1,14 +1,16 @@
 package tabla.mezo;
 
+import javafx.scene.image.Image;
+
 import java.util.List;
 
 public class DuoMezo extends SpecialisMezo
 {
     List<Mezo> masodikAllapotMezok;
 
-    public DuoMezo(String mezoId, List<Mezo> elsoAllapotMezok,List<Mezo> masodikAllapotMezok)
+    public DuoMezo( List<Mezo> elsoAllapotMezok, List<Mezo> masodikAllapotMezok)
     {
-        super(mezoId,elsoAllapotMezok);
+        super(elsoAllapotMezok);
         this.masodikAllapotMezok=masodikAllapotMezok;
     }
 

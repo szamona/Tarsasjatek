@@ -1,5 +1,7 @@
 package tabla.mezo;
 
+import javafx.scene.image.Image;
+
 import java.util.List;
 
 public class TriMezo extends SpecialisMezo
@@ -7,9 +9,9 @@ public class TriMezo extends SpecialisMezo
     List<Mezo> masodikAllapotMezok;
     List<Mezo> harmadikAllapotMezok;
 
-    public TriMezo(String mezoID ,List<Mezo> elsoAllapotMezok, List<Mezo> masodikAllapotMezok, List<Mezo> harmadikAllapotMezok)
+    public TriMezo( List<Mezo> elsoAllapotMezok, List<Mezo> masodikAllapotMezok, List<Mezo> harmadikAllapotMezok)
     {
-        super(mezoID,elsoAllapotMezok);
+        super( elsoAllapotMezok);
         this.masodikAllapotMezok = masodikAllapotMezok;
         this.harmadikAllapotMezok = harmadikAllapotMezok;
     }

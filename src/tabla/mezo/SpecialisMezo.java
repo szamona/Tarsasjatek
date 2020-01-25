@@ -1,14 +1,15 @@
 package tabla.mezo;
 
+import javafx.scene.image.Image;
+
 import java.util.List;
 
 public abstract class SpecialisMezo extends Mezo
 {
     protected  Allapotok allapot = Allapotok.ELSO;
 
-    public SpecialisMezo(String mezoId, List<Mezo> szomszedosMezok)
+    public SpecialisMezo( List<Mezo> szomszedosMezok)
     {
-        super(mezoId);
         super.szomszedosMezok=szomszedosMezok;
     }
 
