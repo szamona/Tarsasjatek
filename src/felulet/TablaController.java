@@ -5,6 +5,10 @@ import jatekTartozekok.Babu;
 import jatekTartozekok.DoboKocka;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -150,6 +154,7 @@ public class TablaController implements Initializable {
     public Jatekos jatekos3;
     public Jatekos jatekos4;
 
+    public AnchorPane apaneTabla;
     public int dobas;
     public EgyszeruMezo mezo1;
 
@@ -157,22 +162,23 @@ public class TablaController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-    public void getJatekosNev(String text1,String text2, String text3, String text4)
+    public void getJatekos(String text1,String text2, String text3, String text4,Image kep1,Image kep2,Image kep3,Image kep4)
     {
+        babu1 = new Babu();
+        babu2 = new Babu();
+        babu3 = new Babu();
+        babu4 = new Babu();
+
         jatekos1 = new Jatekos(text1);
-        babu1 = new Babu("Piros");
         jatekos1.setBabu(babu1);
 
         jatekos2 = new Jatekos(text2);
-        babu2 = new Babu("Sárga");
         jatekos2.setBabu(babu2);
 
         jatekos3 = new Jatekos(text3);
-        babu3 = new Babu("Kék");
         jatekos3.setBabu(babu3);
 
         jatekos4 = new Jatekos(text4);
-        babu4 = new Babu("Zöld");
         jatekos4.setBabu(babu4);
 
         lblJatekos1.setText(text1);
@@ -185,8 +191,86 @@ public class TablaController implements Initializable {
         jatekosok.add(jatekos3);
         jatekosok.add(jatekos4);
 
+        imgBabu1.setImage(kep1);
+        imgBabu2.setImage(kep2);
+        imgBabu3.setImage(kep3);
+        imgBabu4.setImage(kep4);
+
         tablaFeltolt();
 
+    }
+
+    public void getKarakter(String k1,String k2 ,String k3, String k4){
+                DropShadow arnyek=new DropShadow();
+                arnyek.setColor(Color.WHITE);
+                arnyek.setHeight(20);
+                arnyek.setWidth(20);
+
+                babu1.setImage(vizsgalatKarakter(k1));
+                apaneTabla.getChildren().add(babu1);
+                babu1.setFitHeight(210);
+                babu1.setFitWidth(110);
+                babu1.setLayoutY(start.getLayoutY()-100);
+                babu1.setLayoutX(start.getLayoutX());
+                babu1.setEffect(arnyek);
+
+                babu2.setImage(vizsgalatKarakter(k2));
+                apaneTabla.getChildren().add(babu2);
+                babu2.setFitHeight(210);
+                babu2.setFitWidth(110);
+                babu2.setLayoutY(babu1.getLayoutY());
+                babu2.setLayoutX(babu1.getLayoutX()+75);
+                babu2.setEffect(arnyek);
+
+                babu3.setImage(vizsgalatKarakter(k3));
+                apaneTabla.getChildren().add(babu3);
+                babu3.setFitHeight(210);
+                babu3.setFitWidth(110);
+                babu3.setLayoutY(babu2.getLayoutY());
+                babu3.setLayoutX(babu2.getLayoutX()+75);
+                babu3.setEffect(arnyek);
+
+                babu4.setImage(vizsgalatKarakter(k4));
+                apaneTabla.getChildren().add(babu4);
+                babu4.setFitHeight(210);
+                babu4.setFitWidth(110);
+                babu4.setLayoutY(babu3.getLayoutY());
+                babu4.setLayoutX(babu3.getLayoutX()+75);
+                babu4.setEffect(arnyek);
+
+
+    }
+    public Image vizsgalatKarakter(String id){
+        Image kep;
+        if (id.equals("imgKarakter1")){
+            kep = new  Image(getClass().getResourceAsStream("resources/karakter1.png"));
+        }
+        else if (id.equals("imgKarakter2")){
+            kep = new  Image(getClass().getResourceAsStream("resources/karakter2.png"));
+        }
+        else if (id.equals("imgKarakter3")){
+            kep = new  Image(getClass().getResourceAsStream("resources/karakter3.png"));
+        }
+        else if (id.equals("imgKarakter4")){
+            kep = new  Image(getClass().getResourceAsStream("resources/karakter4.png"));
+        }
+        else if (id.equals("imgKarakter5")){
+            kep = new  Image(getClass().getResourceAsStream("resources/karakter5.png"));
+        }
+        else if (id.equals("imgKarakter6")){
+            kep = new  Image(getClass().getResourceAsStream("resources/karakter6.png"));
+        }
+        else if (id.equals("imgKarakter7")){
+            kep = new  Image(getClass().getResourceAsStream("resources/karakter7.png"));
+        }
+        else{
+            kep = new  Image(getClass().getResourceAsStream("resources/karakter8.png"));
+        }
+        return kep;
+    }
+
+    public void Jatek(){
+        
     }
 
     public Jatekos kovetkezoJatekos(Jatekos j)

@@ -1,19 +1,20 @@
 package jatekTartozekok;
 
-public class Babu
-{
-    private String szin;
-    private String mezo;
-    private String kepId;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-    public Babu(String szin)
+public class Babu extends ImageView
+{
+    protected String mezo;
+    protected String kepId;
+
+
+    public Babu ()
     {
-        this.szin=szin;
         this.mezo="";
         this.kepId="";
     }
 
-    public String getSzin() { return szin; }
 
     public String getMezo() { return mezo; }
 
