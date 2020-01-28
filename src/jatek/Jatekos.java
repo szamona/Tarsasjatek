@@ -11,4 +11,8 @@ public class Jatekos
 
     public String getNev() { return nev; }
     public void setBabu(Babu babu) { this.babu = babu; }
+
+    public Babu getBabu() {
+        return babu;
+    }
 }

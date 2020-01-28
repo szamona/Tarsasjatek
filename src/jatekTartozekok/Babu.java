@@ -1,24 +1,27 @@
 package jatekTartozekok;
-
+import tabla.mezo.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Babu extends ImageView
 {
-    protected String mezo;
+    protected Mezo mezo;
     protected String kepId;
 
 
     public Babu ()
     {
-        this.mezo="";
         this.kepId="";
     }
 
 
-    public String getMezo() { return mezo; }
+    public Mezo getMezo() {
+        return mezo;
+    }
 
-    public void setMezo(String mezo) { this.mezo = mezo; }
+    public void setMezo(Mezo mezo) {
+        this.mezo = mezo;
+    }
 
     public String getKepId() { return kepId; }
 

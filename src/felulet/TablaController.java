@@ -6,12 +6,11 @@ import jatekTartozekok.DoboKocka;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Glow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.animation.Timeline;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -20,15 +19,10 @@ import tabla.Tabla;
 import tabla.mezo.EgyszeruMezo;
 import tabla.mezo.Mezo;
 import tabla.mezo.DuoMezo;
-import tabla.mezo.SpecialisMezo;
 import tabla.mezo.TriMezo;
-import tabla.mezo.Allapotok;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class TablaController implements Initializable {
     public List<Jatekos> jatekosok = new LinkedList<Jatekos>();
@@ -153,10 +147,13 @@ public class TablaController implements Initializable {
     public Jatekos jatekos2;
     public Jatekos jatekos3;
     public Jatekos jatekos4;
+    public Jatekos aktivJatekos;
 
     public AnchorPane apaneTabla;
     public int dobas;
     public EgyszeruMezo mezo1;
+    public Random randomSzam =new Random();
+    public List<Mezo> lepesek;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -168,6 +165,11 @@ public class TablaController implements Initializable {
         babu2 = new Babu();
         babu3 = new Babu();
         babu4 = new Babu();
+
+        babu1.setMezo(start);
+        babu2.setMezo(start);
+        babu3.setMezo(start);
+        babu4.setMezo(start);
 
         jatekos1 = new Jatekos(text1);
         jatekos1.setBabu(babu1);
@@ -195,6 +197,8 @@ public class TablaController implements Initializable {
         imgBabu2.setImage(kep2);
         imgBabu3.setImage(kep3);
         imgBabu4.setImage(kep4);
+
+        aktivJatekos=jatekosok.get(randomSzam.nextInt(4));
 
         tablaFeltolt();
 
@@ -238,7 +242,7 @@ public class TablaController implements Initializable {
                 babu4.setLayoutX(babu3.getLayoutX()+75);
                 babu4.setEffect(arnyek);
 
-
+        jatek();
     }
     public Image vizsgalatKarakter(String id){
         Image kep;
@@ -269,29 +273,62 @@ public class TablaController implements Initializable {
         return kep;
     }
 
-    public void Jatek(){
-        
+    public void jatek(){
+       DropShadow shadow = new DropShadow();
+       shadow.setColor(Color.YELLOW);
+       aktivJatekos=kovetkezoJatekos(aktivJatekos);
+       aktivJatekos.getBabu().setEffect(shadow);
+       dobas=0;
+    }
+
+    public void mezokJelzese()
+    {
+        lepesek= new ArrayList<>();
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.YELLOW);
+
+        lepesek=lehetsegesLepesek(dobas,aktivJatekos.getBabu().getMezo(),aktivJatekos.getBabu().getMezo());
+       for (var v: lepesek )
+       {
+                v.setEffect(shadow);
+       }
+    }
+
+    public void lepes(MouseEvent mouseEvent) {
+        if(lepesek.contains((Mezo) mouseEvent.getSource()))
+        {
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.WHITE);
+        aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()-25);
+        aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-170);
+        aktivJatekos.getBabu().setMezo((Mezo) mouseEvent.getSource());
+        aktivJatekos.getBabu().setEffect(shadow);
+        for (var v: lepesek){
+            v.setEffect(null);
+        }
+        jatek();
+        }
     }
 
     public Jatekos kovetkezoJatekos(Jatekos j)
     {
-        if(jatekosok.get(jatekosok.size()-1)==j)
+        if(jatekosok.get(jatekosok.size()-1).equals(j))
         {
             j=jatekosok.get(0);
         }
         else
         {
             int i=0;
-            while (jatekosok.get(i)!=j)
+            while (!jatekosok.get(i).equals(j))
             {
                 i++;
             }
-            j=jatekosok.get(i);
+            j=jatekosok.get(i+1);
         }
         return j;
     }
 
-    public List<Mezo> lehetsegesLepesek(int lepes, Mezo aktualisMezo)
+    public List<Mezo> lehetsegesLepesek(int lepes, Mezo aktualisMezo,Mezo elozo)
     {
         List<Mezo> lehetsegesMezok = new ArrayList<>();
         List<Mezo> ut = aktualisMezo.getSzomszedosMezok();
@@ -299,9 +336,9 @@ public class TablaController implements Initializable {
         {
             for (Mezo mezo : ut)
             {
-                if(mezo!=aktualisMezo)
+                if(!mezo.equals(aktualisMezo)&&!mezo.equals(elozo))
                 {
-                    lehetsegesMezok.addAll(lehetsegesLepesek(lepes-1,mezo));
+                    lehetsegesMezok.addAll(lehetsegesLepesek(lepes-1,mezo,aktualisMezo));
                 }
             }
         }
@@ -328,8 +365,9 @@ public class TablaController implements Initializable {
      mezo5.MezoHozzaad(mezo4);mezo5.MezoHozzaad(mezo6);mezo5.MezoHozzaad(mezo17);
      mezo17.MezoHozzaad(mezoD1);mezo17.MezoHozzaad(mezo5);
      mezoD1.MezoHozzaad(duo1);mezoD1.MezoHozzaad(mezo17);
+     mezoD2.MezoHozzaad(mezo6);
      mezoD3.MezoHozzaad(duo1);mezoD3.MezoHozzaad(mezo7);mezoD3.MezoHozzaad(mezo18);
-     mezo6.MezoHozzaad(mezo5);
+     mezo6.MezoHozzaad(mezo5);mezo6.MezoHozzaad(mezoD2);
      mezo7.MezoHozzaad(mezo8);mezo7.MezoHozzaad(mezoD3);
      mezo8.MezoHozzaad(kerdojel6);mezo8.MezoHozzaad(mezo7);
      kerdojel6.MezoHozzaad(folyo);kerdojel6.MezoHozzaad(mezo8);
@@ -545,6 +583,7 @@ public class TablaController implements Initializable {
                 new KeyFrame(Duration.millis(300), new KeyValue(imgKocka.imageProperty(), Kocka(dobas)))
         );
         timeline.play();
+        mezokJelzese();
     }
 
     public Image Kocka(int szam){
@@ -558,6 +597,8 @@ public class TablaController implements Initializable {
       
       return kep;
     }
+
+
 }
 
 
