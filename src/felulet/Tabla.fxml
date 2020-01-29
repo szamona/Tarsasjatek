@@ -246,7 +246,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <ImageView fx:id="imgTri1" fitHeight="150.0" fitWidth="200.0" layoutX="135.0" layoutY="813.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgTri1" fitHeight="150.0" fitWidth="200.0" layoutX="135.0" layoutY="813.0" onMouseClicked="#specialisLepes" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/triUt1.png" />
          </image>
@@ -744,9 +744,9 @@
       </EgyszeruMezo>
    <MenuButton fx:id="btnMenu" layoutX="11.0" layoutY="14.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="111.0" text="Menü">
      <items>
-       <MenuItem fx:id="menuFomenu" mnemonicParsing="false" text="Kilépés a főmenübe" />
-       <MenuItem mnemonicParsing="false" text="Action 2" />
-         <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+       <MenuItem fx:id="menuFomenu" mnemonicParsing="false" onAction="#fomenu" text="Kilépés a főmenübe" />
+       <MenuItem fx:id="bezaras" mnemonicParsing="false" onAction="#bezar" text="Kilépés a játékból" />
+         <MenuItem mnemonicParsing="false" text="Szabályzat" />
      </items>
       <contextMenu>
          <ContextMenu>

@@ -5,10 +5,16 @@ import jatekTartozekok.Babu;
 import jatekTartozekok.DoboKocka;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.animation.Timeline;
 import javafx.fxml.Initializable;
@@ -16,11 +22,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tabla.Tabla;
-import tabla.mezo.EgyszeruMezo;
-import tabla.mezo.Mezo;
-import tabla.mezo.DuoMezo;
-import tabla.mezo.TriMezo;
+import tabla.mezo.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -123,6 +127,12 @@ public class TablaController implements Initializable {
     public TriMezo tri2;
     public ImageView imgKocka;
     public ImageView imgTri1;
+    public ImageView imgTri2;
+    public ImageView imgDuo1;
+    public ImageView imgDuo2;
+    public ImageView imgFolyo;
+    public MenuItem menuFomenu;
+    public MenuButton btnMenu;
 
     Tabla tabla=new Tabla();
 
@@ -290,6 +300,9 @@ public class TablaController implements Initializable {
         lepesek=lehetsegesLepesek(dobas,aktivJatekos.getBabu().getMezo(),aktivJatekos.getBabu().getMezo());
        for (var v: lepesek )
        {
+           if(v.equals(tri1)||v.equals(tri2)||v.equals(duo1)||v.equals(duo2)||v.equals(folyo)){
+               specialisMezoVizsgalatKep((SpecialisMezo) v).setEffect(shadow);
+           }
                 v.setEffect(shadow);
        }
     }
@@ -304,9 +317,68 @@ public class TablaController implements Initializable {
         aktivJatekos.getBabu().setMezo((Mezo) mouseEvent.getSource());
         aktivJatekos.getBabu().setEffect(shadow);
         for (var v: lepesek){
+            if(v.equals(tri1)||v.equals(tri2)||v.equals(duo1)||v.equals(duo2)||v.equals(folyo)){
+                specialisMezoVizsgalatKep((SpecialisMezo) v).setEffect(null);
+            }
             v.setEffect(null);
         }
         jatek();
+        }
+    }
+    public void specialisLepes(MouseEvent mouseEvent) {
+
+        if(lepesek.contains((Mezo) mouseEvent.getSource()))
+        {
+            DropShadow shadow = new DropShadow();
+            shadow.setColor(Color.WHITE);
+            aktivJatekos.getBabu().setLayoutX((double) ((ImageView) mouseEvent.getSource()).getLayoutX()-25);
+            aktivJatekos.getBabu().setLayoutY((double) ((ImageView) mouseEvent.getSource()).getLayoutY()-170);
+            aktivJatekos.getBabu().setMezo((SpecialisMezo) specialisMezoVizsgalat((ImageView) mouseEvent.getSource()));
+            aktivJatekos.getBabu().setEffect(shadow);
+            for (var v: lepesek){
+                if(v.equals(tri1)||v.equals(tri2)||v.equals(duo1)||v.equals(duo2)||v.equals(folyo)){
+                    specialisMezoVizsgalatKep((SpecialisMezo) v).setEffect(null);
+                }
+                v.setEffect(null);
+            }
+            jatek();
+        }
+
+    }
+
+    public ImageView specialisMezoVizsgalatKep(SpecialisMezo mezo){
+        if (mezo.equals(tri1)){
+            return imgTri1;
+        }
+        else if(mezo.equals(tri2)){
+            return imgTri2;
+        }
+        else if(mezo.equals(duo1)){
+            return imgDuo1;
+        }
+        else if(mezo.equals(duo2)){
+            return imgDuo2;
+        }
+        else {
+            return imgFolyo;
+        }
+    }
+    public SpecialisMezo specialisMezoVizsgalat(ImageView mezo){
+
+        if(mezo.equals(imgTri1)){
+            return tri1;
+        }
+        else if(mezo.equals(imgTri2)){
+            return tri2;
+        }
+        else if(mezo.equals(imgDuo1)){
+            return duo1;
+        }
+        else if (mezo.equals(imgDuo2)){
+            return duo2;
+        }
+        else {
+            return folyo;
         }
     }
 
@@ -598,7 +670,25 @@ public class TablaController implements Initializable {
       return kep;
     }
 
+    public void fomenu (){
+        try{
 
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Menu.fxml"));
+            Parent root1 =  (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Tarsasjatek");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        }catch (IOException e){ System.err.println("Az ablakot nem lehet megnyitni!\n"+e); }
+
+        Stage currentStage = (Stage) btnMenu.getScene().getWindow();
+        currentStage.close();
+    }
+   public void bezar (){
+       Stage currentStage = (Stage) btnMenu.getScene().getWindow();
+       currentStage.close();
+   }
 }
 
 

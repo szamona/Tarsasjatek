@@ -222,7 +222,7 @@ public class JatekosokAdatfelveteleController implements Initializable {
 
         }catch (IOException e){ System.err.println("Az ablakot nem lehet megnyitni!\n"+e); }
 
-        Stage currentStage = (Stage) btnJatekInditasa.getScene().getWindow();
+        Stage currentStage = (Stage) btnVissza.getScene().getWindow();
         currentStage.close();
     }
 }
