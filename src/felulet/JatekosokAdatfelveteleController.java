@@ -83,6 +83,7 @@ public class JatekosokAdatfelveteleController implements Initializable {
            controller.getKarakter(veglegesKarakterek[0],veglegesKarakterek[1],veglegesKarakterek[2],veglegesKarakterek[3]);
             Stage stage = new Stage();
             stage.setTitle("Tarsasjatek");
+            stage.setMaximized(true);
             stage.setFullScreen(true);
             stage.setScene(new Scene(root1));
             stage.show();

@@ -126,11 +126,6 @@ public class TablaController implements Initializable {
     public TriMezo tri1;
     public TriMezo tri2;
     public ImageView imgKocka;
-    public ImageView imgTri1;
-    public ImageView imgTri2;
-    public ImageView imgDuo1;
-    public ImageView imgDuo2;
-    public ImageView imgFolyo;
     public MenuItem menuFomenu;
     public MenuButton btnMenu;
 
@@ -158,6 +153,8 @@ public class TablaController implements Initializable {
     public Jatekos jatekos3;
     public Jatekos jatekos4;
     public Jatekos aktivJatekos;
+
+    public TriMezo Tri1;
 
     public AnchorPane apaneTabla;
     public int dobas;
@@ -254,6 +251,59 @@ public class TablaController implements Initializable {
 
         jatek();
     }
+    public void specialisMezok(){
+        Image kep= new Image(getClass().getResourceAsStream("resources/triUt1.png"));
+        tri1.setImage(kep);
+        apaneTabla.getChildren().add(tri1);
+        tri1.setId("tri1");
+        tri1.setFitHeight(150);
+        tri1.setFitWidth(200);
+        tri1.setLayoutX(135);
+        tri1.setLayoutY(813);
+        tri1.setOnMouseClicked(this::lepes);
+
+        kep= new Image(getClass().getResourceAsStream("resources/triUt3.png"));
+        tri2.setImage(kep);
+        apaneTabla.getChildren().add(tri2);
+        tri2.setId("tri2");
+        tri2.setFitHeight(150);
+        tri2.setFitWidth(200);
+        tri2.setLayoutX(1455);
+        tri2.setLayoutY(273);
+        tri2.setOnMouseClicked(this::lepes);
+
+        kep= new Image(getClass().getResourceAsStream("resources/duoHid2.png"));
+        duo1.setImage(kep);
+        apaneTabla.getChildren().add(duo1);
+        duo1.setId("duo1");
+        duo1.setFitHeight(150);
+        duo1.setFitWidth(200);
+        duo1.setLayoutX(1192);
+        duo1.setLayoutY(732);
+        duo1.setOnMouseClicked(this::lepes);
+
+        kep= new Image(getClass().getResourceAsStream("resources/duoHid1.png"));
+        duo2.setImage(kep);
+        apaneTabla.getChildren().add(duo2);
+        duo2.setId("duo2");
+        duo2.setFitHeight(150);
+        duo2.setFitWidth(200);
+        duo2.setLayoutX(179);
+        duo2.setLayoutY(369);
+        duo2.setOnMouseClicked(this::lepes);
+
+        kep= new Image(getClass().getResourceAsStream("resources/folyo1.png"));
+        folyo.setImage(kep);
+        apaneTabla.getChildren().add(folyo);
+        folyo.setId("folyo");
+        folyo.setFitHeight(208);
+        folyo.setFitWidth(499);
+        folyo.setLayoutX(1102);
+        folyo.setLayoutY(459);
+        folyo.setOnMouseClicked(this::lepes);
+
+
+    }
     public Image vizsgalatKarakter(String id){
         Image kep;
         if (id.equals("imgKarakter1")){
@@ -296,120 +346,98 @@ public class TablaController implements Initializable {
         lepesek= new ArrayList<>();
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.YELLOW);
-
         lepesek=lehetsegesLepesek(dobas,aktivJatekos.getBabu().getMezo(),aktivJatekos.getBabu().getMezo());
        for (var v: lepesek )
        {
-           if(v.equals(tri1)||v.equals(tri2)||v.equals(duo1)||v.equals(duo2)||v.equals(folyo)){
-               specialisMezoVizsgalatKep((SpecialisMezo) v).setEffect(shadow);
-           }
-                v.setEffect(shadow);
+
+           v.setEffect(shadow);
        }
     }
 
     public void lepes(MouseEvent mouseEvent) {
-        if(lepesek.contains((Mezo) mouseEvent.getSource()))
+        if(lepesek.contains((Mezo) mouseEvent.getSource())&&dobas!=0)
         {
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.WHITE);
-        aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()-25);
-        aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-170);
+        if(((Mezo) mouseEvent.getSource()).getId().contains("mezo")){
+            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()-25);
+            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-170);
+        }
+        else if(((Mezo) mouseEvent.getSource()).getId().contains("kerdojel")){
+            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()+20);
+            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-100);
+        }
+        else if(((Mezo) mouseEvent.getSource()).getId().contains("tri")){
+            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()+50);
+            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-140);
+        }
+        else if(((Mezo) mouseEvent.getSource()).getId().contains("duo")){
+            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()+50);
+            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-120);
+        }
+        else if(((Mezo) mouseEvent.getSource()).getId().contains("folyo")){
+            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()+370);
+            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-50);
+        }
+        else if(((Mezo) mouseEvent.getSource()).getId().contains("cel")){
+            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX());
+            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY());
+        }
+        else if(((Mezo) mouseEvent.getSource()).getId().contains("start")){
+            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()+150);
+            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-150);
+        }
+
         aktivJatekos.getBabu().setMezo((Mezo) mouseEvent.getSource());
         aktivJatekos.getBabu().setEffect(shadow);
         for (var v: lepesek){
-            if(v.equals(tri1)||v.equals(tri2)||v.equals(duo1)||v.equals(duo2)||v.equals(folyo)){
-                specialisMezoVizsgalatKep((SpecialisMezo) v).setEffect(null);
-            }
             v.setEffect(null);
         }
         jatek();
         }
     }
-    public void specialisLepes(MouseEvent mouseEvent) {
 
-        if(lepesek.contains((Mezo) mouseEvent.getSource()))
-        {
-            DropShadow shadow = new DropShadow();
-            shadow.setColor(Color.WHITE);
-            aktivJatekos.getBabu().setLayoutX((double) ((ImageView) mouseEvent.getSource()).getLayoutX()-25);
-            aktivJatekos.getBabu().setLayoutY((double) ((ImageView) mouseEvent.getSource()).getLayoutY()-170);
-            aktivJatekos.getBabu().setMezo((SpecialisMezo) specialisMezoVizsgalat((ImageView) mouseEvent.getSource()));
-            aktivJatekos.getBabu().setEffect(shadow);
-            for (var v: lepesek){
-                if(v.equals(tri1)||v.equals(tri2)||v.equals(duo1)||v.equals(duo2)||v.equals(folyo)){
-                    specialisMezoVizsgalatKep((SpecialisMezo) v).setEffect(null);
-                }
-                v.setEffect(null);
-            }
-            jatek();
-        }
 
-    }
 
-    public ImageView specialisMezoVizsgalatKep(SpecialisMezo mezo){
-        if (mezo.equals(tri1)){
-            return imgTri1;
-        }
-        else if(mezo.equals(tri2)){
-            return imgTri2;
-        }
-        else if(mezo.equals(duo1)){
-            return imgDuo1;
-        }
-        else if(mezo.equals(duo2)){
-            return imgDuo2;
-        }
-        else {
-            return imgFolyo;
-        }
-    }
-    public SpecialisMezo specialisMezoVizsgalat(ImageView mezo){
 
-        if(mezo.equals(imgTri1)){
-            return tri1;
-        }
-        else if(mezo.equals(imgTri2)){
-            return tri2;
-        }
-        else if(mezo.equals(imgDuo1)){
-            return duo1;
-        }
-        else if (mezo.equals(imgDuo2)){
-            return duo2;
-        }
-        else {
-            return folyo;
-        }
-    }
 
     public Jatekos kovetkezoJatekos(Jatekos j)
     {
-        if(jatekosok.get(jatekosok.size()-1).equals(j))
-        {
-            j=jatekosok.get(0);
-        }
-        else
-        {
-            int i=0;
-            while (!jatekosok.get(i).equals(j))
+            if(jatekosok.get(jatekosok.size()-1).equals(j))
             {
-                i++;
+                j=jatekosok.get(0);
             }
-            j=jatekosok.get(i+1);
-        }
-        return j;
+            else
+            {
+                int i=0;
+                while (!jatekosok.get(i).equals(j))
+                {
+                    i++;
+                }
+                j=jatekosok.get(i+1);
+            }
+
+            if(j.getBabu().getMezo().equals(cel)){
+                return kovetkezoJatekos(j);
+            }
+            else{
+                return j;
+            }
+
     }
 
     public List<Mezo> lehetsegesLepesek(int lepes, Mezo aktualisMezo,Mezo elozo)
     {
         List<Mezo> lehetsegesMezok = new ArrayList<>();
         List<Mezo> ut = aktualisMezo.getSzomszedosMezok();
+
         if(lepes>0)
         {
             for (Mezo mezo : ut)
             {
                 if(!mezo.equals(aktualisMezo)&&!mezo.equals(elozo))
                 {
+
                     lehetsegesMezok.addAll(lehetsegesLepesek(lepes-1,mezo,aktualisMezo));
                 }
             }
@@ -422,12 +450,40 @@ public class TablaController implements Initializable {
         return lehetsegesMezok;
     }
 
+    public List<Mezo> specialis(Mezo m1,Mezo m2) {
+        List<Mezo> mezok= new LinkedList<>();
+        mezok.add(m1);
+        mezok.add(m2);
+        return mezok;
+    }
+
     public void tablaFeltolt(){
-        List<Mezo> lista = new LinkedList<>();
-        List<Mezo> lista2 = new LinkedList<>();
-        List<Mezo> lista3 = new LinkedList<>();
 
 
+        mezoD1.MezoHozzaad(mezo17);
+        mezoD3.MezoHozzaad(mezo7);mezoD3.MezoHozzaad(mezo18);
+        duo1=new DuoMezo(specialis(mezoD1,mezoD3),specialis(mezoD2,mezoD4));
+        System.out.println(duo1.getSzomszedosMezok());
+
+        mezoD22.MezoHozzaad(mezo39);
+        mezoD44.MezoHozzaad(mezo43);
+        duo2=new DuoMezo(specialis(mezoD22,mezoD44),specialis(mezoD11,mezoD33));
+
+        kerdojel6.MezoHozzaad(mezo8);
+        mezo9.MezoHozzaad(mezo10);
+        folyo=new DuoMezo(specialis(kerdojel6,mezo9),specialis(mezo61,mezo19));
+
+        mezoT11.MezoHozzaad(kerdojel2);mezoT11.MezoHozzaad(mezo31);
+        mezoT22.MezoHozzaad(mezo32);
+        tri1=new TriMezo(specialis(mezoT11,mezoT22),specialis(mezoT22,mezoT33),specialis(mezoT33,mezoT11));
+
+        mezoT1.MezoHozzaad(mezo10);mezoT1.MezoHozzaad(kerdojel8);
+        mezoT3.MezoHozzaad(mezo21);
+        tri2=new TriMezo(specialis(mezoT1,mezoT3),specialis(mezoT1,mezoT2),specialis(mezoT2,mezoT3));
+
+        kerdojel6.MezoHozzaad(mezo8);
+        mezo9.MezoHozzaad(mezo10);
+        folyo=new DuoMezo(specialis(mezo9,kerdojel6),specialis(mezo61,mezo19));
 
      start.MezoHozzaad(mezo1);start.MezoHozzaad(mezo30);
      mezo1.MezoHozzaad(mezo2);mezo1.MezoHozzaad(start);
@@ -436,17 +492,18 @@ public class TablaController implements Initializable {
      mezo4.MezoHozzaad(mezo5);mezo4.MezoHozzaad(mezo3);
      mezo5.MezoHozzaad(mezo4);mezo5.MezoHozzaad(mezo6);mezo5.MezoHozzaad(mezo17);
      mezo17.MezoHozzaad(mezoD1);mezo17.MezoHozzaad(mezo5);
-     mezoD1.MezoHozzaad(duo1);mezoD1.MezoHozzaad(mezo17);
+     mezoD1.MezoHozzaad(duo1);
      mezoD2.MezoHozzaad(mezo6);
-     mezoD3.MezoHozzaad(duo1);mezoD3.MezoHozzaad(mezo7);mezoD3.MezoHozzaad(mezo18);
+     mezoD3.MezoHozzaad(duo1);
      mezo6.MezoHozzaad(mezo5);mezo6.MezoHozzaad(mezoD2);
      mezo7.MezoHozzaad(mezo8);mezo7.MezoHozzaad(mezoD3);
      mezo8.MezoHozzaad(kerdojel6);mezo8.MezoHozzaad(mezo7);
-     kerdojel6.MezoHozzaad(folyo);kerdojel6.MezoHozzaad(mezo8);
-     mezo9.MezoHozzaad(folyo);mezo9.MezoHozzaad(mezo10);
+     kerdojel6.MezoHozzaad(folyo);
+     mezo9.MezoHozzaad(folyo);
      mezo10.MezoHozzaad(mezoT1);mezo10.MezoHozzaad(mezo9);
-     mezoT1.MezoHozzaad(tri2);mezoT1.MezoHozzaad(mezo10);
-     mezoT2.MezoHozzaad(kerdojel1);
+     kerdojel8.MezoHozzaad(mezoT1);
+     mezoT1.MezoHozzaad(tri2);
+     mezoT2.MezoHozzaad(kerdojel11);
      kerdojel11.MezoHozzaad(mezoT2);kerdojel11.MezoHozzaad(mezo11);
      mezo11.MezoHozzaad(mezo12);mezo11.MezoHozzaad(kerdojel1);
      mezo12.MezoHozzaad(mezo13);mezo12.MezoHozzaad(mezo11);
@@ -461,7 +518,7 @@ public class TablaController implements Initializable {
      kerdojel7.MezoHozzaad(mezo20); kerdojel7.MezoHozzaad(mezo19); kerdojel7.MezoHozzaad(mezo38);
      mezo20.MezoHozzaad(kerdojel7);mezo20.MezoHozzaad(mezo21);
      mezo21.MezoHozzaad(mezoT3);mezo21.MezoHozzaad(mezo20);
-     mezoT3.MezoHozzaad(tri2);mezoT3.MezoHozzaad(mezo21);
+     mezoT3.MezoHozzaad(tri2);
      kerdojel1.MezoHozzaad(mezoD4);kerdojel1.MezoHozzaad(mezo22);kerdojel1.MezoHozzaad(mezo23);
      mezoD4.MezoHozzaad(kerdojel1);
      mezo23.MezoHozzaad(mezo24);mezo23.MezoHozzaad(kerdojel1);
@@ -471,27 +528,30 @@ public class TablaController implements Initializable {
      mezo27.MezoHozzaad(mezo28);mezo27.MezoHozzaad(mezo26);mezo27.MezoHozzaad(mezo31);
      mezo28.MezoHozzaad(mezo29);mezo28.MezoHozzaad(mezo27);
      mezo29.MezoHozzaad(mezo30);mezo29.MezoHozzaad(mezo28);
-     mezo30.MezoHozzaad(cel);mezo30.MezoHozzaad(mezo29);
+     mezo30.MezoHozzaad(start);mezo30.MezoHozzaad(mezo29);
      mezo31.MezoHozzaad(mezoT11);mezo31.MezoHozzaad(mezo27);
-     mezoT11.MezoHozzaad(kerdojel2);mezoT11.MezoHozzaad(mezo31);mezoT11.MezoHozzaad(tri1);
-     mezoT22.MezoHozzaad(tri1);mezoT22.MezoHozzaad(mezo32);
-     mezo32.MezoHozzaad(mezo33);mezo32.MezoHozzaad(kerdojel3);
+     mezoT11.MezoHozzaad(tri1);
+     mezoT22.MezoHozzaad(tri1);
+     mezo32.MezoHozzaad(mezo33);mezo32.MezoHozzaad(mezoT22);
+     mezo33.MezoHozzaad(kerdojel3);mezo33.MezoHozzaad(mezo32);
      kerdojel3.MezoHozzaad(mezo34);kerdojel3.MezoHozzaad(mezo33);
-     mezo34.MezoHozzaad(mezo35);mezo34.MezoHozzaad(kerdojel3);
+     mezo34.MezoHozzaad(mezo35);mezo34.MezoHozzaad(kerdojel3);mezo34.MezoHozzaad(mezo39);
      mezo35.MezoHozzaad(mezo36);mezo35.MezoHozzaad(mezo34);
      mezo36.MezoHozzaad(kerdojel5);mezo36.MezoHozzaad(mezo35);
      kerdojel5.MezoHozzaad(mezo36);kerdojel5.MezoHozzaad(mezo37);
      mezo37.MezoHozzaad(mezo38);mezo37.MezoHozzaad(kerdojel5);
+     mezo38.MezoHozzaad(mezo37);mezo38.MezoHozzaad(kerdojel7);
      mezo39.MezoHozzaad(mezoD22);mezo39.MezoHozzaad(mezo34);
-     mezoD22.MezoHozzaad(duo2);mezoD22.MezoHozzaad(mezo39);
+     mezoD22.MezoHozzaad(duo2);
 
      mezoT33.MezoHozzaad(mezo40);
      mezo40.MezoHozzaad(mezo41); mezo40.MezoHozzaad(mezoT33);
      mezo41.MezoHozzaad(mezo42);mezo41.MezoHozzaad(mezo40);
      mezo42.MezoHozzaad(kerdojel4);mezo42.MezoHozzaad(mezo41);
-     kerdojel4.MezoHozzaad(mezo42);kerdojel4.MezoHozzaad(mezoD22);
-     mezoD22.MezoHozzaad(kerdojel4);
-     mezoD44.MezoHozzaad(duo2);mezoD44.MezoHozzaad(mezo43);
+     kerdojel4.MezoHozzaad(mezo42);kerdojel4.MezoHozzaad(mezoD11);
+     mezoD11.MezoHozzaad(kerdojel4);
+     mezoD22.MezoHozzaad(mezo39);
+     mezoD44.MezoHozzaad(duo2);
      mezo43.MezoHozzaad(mezo44);mezo43.MezoHozzaad(mezoD44);
      mezo44.MezoHozzaad(kerdojel12);mezo44.MezoHozzaad(mezo43);
      kerdojel12.MezoHozzaad(mezo45);kerdojel12.MezoHozzaad(mezo44);
@@ -516,44 +576,6 @@ public class TablaController implements Initializable {
      mezo60.MezoHozzaad(cel);mezo60.MezoHozzaad(mezo59);
 
 
-        lista.add(mezoD1);
-        lista.add(mezoD3);
-        lista2.add(mezoD2);
-        lista2.add(mezoD4);
-        duo1=new DuoMezo(lista,lista2);
-        lista.clear();lista2.clear();
-
-        lista.add(mezoD11);
-        lista.add(mezoD33);
-        lista2.add(mezoD22);
-        lista2.add(mezoD44);
-        duo2=new DuoMezo(lista,lista2);
-        lista.clear();lista2.clear();
-
-        lista.add(kerdojel6);
-        lista.add(mezo9);
-        lista2.add(mezo61);
-        lista2.add(mezo19);
-        folyo=new DuoMezo(lista,lista2);
-        lista.clear();lista2.clear();
-
-        lista.add(mezoT11);
-        lista.add(mezoT22);
-        lista2.add(mezoT22);
-        lista2.add(mezoT33);
-        lista3.add(mezoT33);
-        lista.add(mezoT11);
-        tri1=new TriMezo(lista,lista2,lista3);
-        lista.clear();lista2.clear();lista3.clear();
-
-        lista.add(mezoT1);
-        lista.add(mezoT2);
-        lista2.add(mezoT2);
-        lista2.add(mezoT3);
-        lista3.add(mezoT3);
-        lista.add(mezoT1);
-        tri2=new TriMezo(lista,lista2,lista3);
-        lista.clear();lista2.clear();lista3.clear();
 
         tabla.mezoHozzaad(start);
         tabla.mezoHozzaad(cel);
@@ -635,27 +657,31 @@ public class TablaController implements Initializable {
         tabla.mezoHozzaad(folyo);
         tabla.mezoHozzaad(tri1);
         tabla.mezoHozzaad(tri2);
+
+        specialisMezok();
     }
 
     public void animation(){
-        Image kep = new  Image(getClass().getResourceAsStream("resources/kocka1.png"));
-        Image kep2 = new  Image(getClass().getResourceAsStream("resources/kocka2.png"));
-        Image kep3 = new  Image(getClass().getResourceAsStream("resources/kocka3.png"));
-        Image kep4 = new  Image(getClass().getResourceAsStream("resources/kocka4.png"));
-        Image kep5 = new  Image(getClass().getResourceAsStream("resources/kocka5.png"));
-        Image kep6 = new  Image(getClass().getResourceAsStream("resources/kocka6.png"));
-        dobas=kocka.getDobas();
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(imgKocka.imageProperty(), kep)),
-                new KeyFrame(Duration.millis(50), new KeyValue(imgKocka.imageProperty(), kep2)),
-                new KeyFrame(Duration.millis(100), new KeyValue(imgKocka.imageProperty(), kep3)),
-                new KeyFrame(Duration.millis(150), new KeyValue(imgKocka.imageProperty(), kep4)),
-                new KeyFrame(Duration.millis(200), new KeyValue(imgKocka.imageProperty(), kep5)),
-                new KeyFrame(Duration.millis(250), new KeyValue(imgKocka.imageProperty(), kep6)),
-                new KeyFrame(Duration.millis(300), new KeyValue(imgKocka.imageProperty(), Kocka(dobas)))
-        );
-        timeline.play();
-        mezokJelzese();
+        if(dobas==0) {
+            Image kep = new Image(getClass().getResourceAsStream("resources/kocka1.png"));
+            Image kep2 = new Image(getClass().getResourceAsStream("resources/kocka2.png"));
+            Image kep3 = new Image(getClass().getResourceAsStream("resources/kocka3.png"));
+            Image kep4 = new Image(getClass().getResourceAsStream("resources/kocka4.png"));
+            Image kep5 = new Image(getClass().getResourceAsStream("resources/kocka5.png"));
+            Image kep6 = new Image(getClass().getResourceAsStream("resources/kocka6.png"));
+            dobas = kocka.getDobas();
+            Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(imgKocka.imageProperty(), kep)),
+                    new KeyFrame(Duration.millis(50), new KeyValue(imgKocka.imageProperty(), kep2)),
+                    new KeyFrame(Duration.millis(100), new KeyValue(imgKocka.imageProperty(), kep3)),
+                    new KeyFrame(Duration.millis(150), new KeyValue(imgKocka.imageProperty(), kep4)),
+                    new KeyFrame(Duration.millis(200), new KeyValue(imgKocka.imageProperty(), kep5)),
+                    new KeyFrame(Duration.millis(250), new KeyValue(imgKocka.imageProperty(), kep6)),
+                    new KeyFrame(Duration.millis(300), new KeyValue(imgKocka.imageProperty(), Kocka(dobas)))
+            );
+            timeline.play();
+            mezokJelzese();
+        }
     }
 
     public Image Kocka(int szam){
