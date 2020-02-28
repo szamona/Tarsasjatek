@@ -3,16 +3,20 @@ package felulet;
 import jatek.Jatekos;
 import jatekTartozekok.Babu;
 import jatekTartozekok.DoboKocka;
+import jatekTartozekok.Kartya;
+import jatekTartozekok.Sarkany;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -128,11 +132,13 @@ public class TablaController implements Initializable {
     public ImageView imgKocka;
     public MenuItem menuFomenu;
     public MenuButton btnMenu;
+    public Label lblKartya;
+    public Button btnOk;
+    public Pane paneKartya;
 
     Tabla tabla=new Tabla();
 
     public DoboKocka kocka=new DoboKocka();
-    public ImageView mj1;
     public ImageView imgBabu1;
     public ImageView imgBabu2;
     public ImageView imgBabu3;
@@ -148,20 +154,22 @@ public class TablaController implements Initializable {
     public Babu babu3;
     public Babu babu4;
 
-    public  Jatekos jatekos1;
+    public Jatekos jatekos1;
     public Jatekos jatekos2;
     public Jatekos jatekos3;
     public Jatekos jatekos4;
     public Jatekos aktivJatekos;
+    public Babu csereJatekos;
+    public Mezo cseremezo;
 
-    public TriMezo Tri1;
-
+    public Kartya kartya=new Kartya();
+    Sarkany sarkany;
     public AnchorPane apaneTabla;
     public int dobas;
     public EgyszeruMezo mezo1;
     public Random randomSzam =new Random();
     public List<Mezo> lepesek;
-
+    public List<Mezo> specialisMezok= new ArrayList<>();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
@@ -206,11 +214,21 @@ public class TablaController implements Initializable {
         imgBabu4.setImage(kep4);
 
         aktivJatekos=jatekosok.get(randomSzam.nextInt(4));
-
+        sarkany();
         tablaFeltolt();
 
     }
+    public void sarkany(){
+        Image kep = new Image(getClass().getResourceAsStream("resources/Sarkany.png"));
+        sarkany = new Sarkany();
+        apaneTabla.getChildren().add(sarkany);
+        sarkany.setFitHeight(180);
+        sarkany.setFitWidth(180);
+        sarkany.setLayoutX(1650);
+        sarkany.setLayoutY(465);
+        sarkany.setImage(kep);
 
+    }
     public void getKarakter(String k1,String k2 ,String k3, String k4){
                 DropShadow arnyek=new DropShadow();
                 arnyek.setColor(Color.WHITE);
@@ -224,6 +242,7 @@ public class TablaController implements Initializable {
                 babu1.setLayoutY(start.getLayoutY()-100);
                 babu1.setLayoutX(start.getLayoutX());
                 babu1.setEffect(arnyek);
+                babu1.setOnMouseClicked(this::babuCsere);
 
                 babu2.setImage(vizsgalatKarakter(k2));
                 apaneTabla.getChildren().add(babu2);
@@ -232,6 +251,7 @@ public class TablaController implements Initializable {
                 babu2.setLayoutY(babu1.getLayoutY());
                 babu2.setLayoutX(babu1.getLayoutX()+75);
                 babu2.setEffect(arnyek);
+                babu2.setOnMouseClicked(this::babuCsere);
 
                 babu3.setImage(vizsgalatKarakter(k3));
                 apaneTabla.getChildren().add(babu3);
@@ -240,6 +260,7 @@ public class TablaController implements Initializable {
                 babu3.setLayoutY(babu2.getLayoutY());
                 babu3.setLayoutX(babu2.getLayoutX()+75);
                 babu3.setEffect(arnyek);
+                babu3.setOnMouseClicked(this::babuCsere);
 
                 babu4.setImage(vizsgalatKarakter(k4));
                 apaneTabla.getChildren().add(babu4);
@@ -248,6 +269,7 @@ public class TablaController implements Initializable {
                 babu4.setLayoutY(babu3.getLayoutY());
                 babu4.setLayoutX(babu3.getLayoutX()+75);
                 babu4.setEffect(arnyek);
+                babu4.setOnMouseClicked(this::babuCsere);
 
         jatek();
     }
@@ -260,7 +282,7 @@ public class TablaController implements Initializable {
         tri1.setFitWidth(200);
         tri1.setLayoutX(135);
         tri1.setLayoutY(813);
-        tri1.setOnMouseClicked(this::lepes);
+        tri1.setOnMouseClicked(this::specialisLepes);
 
         kep= new Image(getClass().getResourceAsStream("resources/triUt3.png"));
         tri2.setImage(kep);
@@ -270,7 +292,7 @@ public class TablaController implements Initializable {
         tri2.setFitWidth(200);
         tri2.setLayoutX(1455);
         tri2.setLayoutY(273);
-        tri2.setOnMouseClicked(this::lepes);
+        tri2.setOnMouseClicked(this::specialisLepes);
 
         kep= new Image(getClass().getResourceAsStream("resources/duoHid2.png"));
         duo1.setImage(kep);
@@ -280,7 +302,7 @@ public class TablaController implements Initializable {
         duo1.setFitWidth(200);
         duo1.setLayoutX(1192);
         duo1.setLayoutY(732);
-        duo1.setOnMouseClicked(this::lepes);
+        duo1.setOnMouseClicked(this::specialisLepes);
 
         kep= new Image(getClass().getResourceAsStream("resources/duoHid1.png"));
         duo2.setImage(kep);
@@ -290,7 +312,7 @@ public class TablaController implements Initializable {
         duo2.setFitWidth(200);
         duo2.setLayoutX(179);
         duo2.setLayoutY(369);
-        duo2.setOnMouseClicked(this::lepes);
+        duo2.setOnMouseClicked(this::specialisLepes);
 
         kep= new Image(getClass().getResourceAsStream("resources/folyo1.png"));
         folyo.setImage(kep);
@@ -300,9 +322,194 @@ public class TablaController implements Initializable {
         folyo.setFitWidth(499);
         folyo.setLayoutX(1102);
         folyo.setLayoutY(459);
-        folyo.setOnMouseClicked(this::lepes);
+        folyo.setOnMouseClicked(this::specialisLepes);
 
 
+    }
+    public void kartyalap(Mezo m){
+
+        kartya.Sorsolas();
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.YELLOW);
+        shadow.setWidth(50);
+        shadow.setHeight(50);
+        paneKartya.toFront();
+        paneKartya.setVisible(true);
+        if(kartya.getSzam()==1){
+
+            aktivJatekos.getBabu().setLayoutX((double) (start).getLayoutX()+150);
+            aktivJatekos.getBabu().setLayoutY((double) (start).getLayoutY()-150);
+            aktivJatekos.getBabu().setMezo(start);
+            lblKartya.setText("A kalandorodat elátkozták.Visszakerülsz a startmezőre!");
+            kartya.setSzam(0);
+            jatek();
+        }
+        if(kartya.getSzam()==2){
+            aktivJatekos.setLephete(false);
+            lblKartya.setText("A kalandorod csapdába esett! Kimaradsz egy körből!");
+            kartya.setSzam(0);
+            jatek();
+
+        }
+        if (kartya.getSzam()==3){
+            csereJatekos=new Babu();
+            csereJatekos.setLayoutX(aktivJatekos.getBabu().getLayoutX());
+            csereJatekos.setLayoutY(aktivJatekos.getBabu().getLayoutY());
+            cseremezo=aktivJatekos.getBabu().getMezo();
+
+            for (var v: jatekosok) {
+                if(!v.equals(aktivJatekos)){
+
+                    v.getBabu().setEffect(shadow);
+                }
+            }
+            lblKartya.setText("Találtál egy teleportáló varázslatot! Cseréld ki a kalandorod helyét egy másik kalandoréval.");
+        }
+        if(kartya.getSzam()==4){
+            dobas=10;
+            lepesek=lehetsegesLepesek(dobas,m,m);
+            for (var v: lepesek )
+            {
+                v.setEffect(null);
+                v.setEffect(shadow);
+            }
+            lblKartya.setText("Lépj 10 mezőt!");
+            kartya.setSzam(0);
+        }
+        if(kartya.getSzam()==5){
+            specialisMezok.add(tri1);
+            specialisMezok.add(tri2);
+            specialisMezok.add(duo1);
+            specialisMezok.add(duo2);
+            specialisMezok.add(folyo);
+
+            for (var v: specialisMezok )
+            {
+                v.setEffect(null);
+                v.setEffect(shadow);
+            }
+            lblKartya.setText("Változtasd meg az egyik speciális mezőt!");
+        }
+        if(kartya.getSzam()==6){
+            lepesek=new ArrayList<>();
+
+            for (var v:tabla.getTablaMezoi()) {
+                if(!v.equals(babu1.getMezo())&&!v.equals(babu2.getMezo())&&!v.equals(babu3.getMezo())&&!v.equals(babu4.getMezo())&&!v.equals(cel)){
+                    lepesek.add(v);
+                    v.setEffect(shadow);
+                }
+            }
+            shadow.setColor(Color.RED);
+            sarkany.setEffect(shadow);
+            lblKartya.setText("Lépj a sárkánnyal!");
+        }
+
+    }
+    public void okButton(){
+        paneKartya.setVisible(false);
+    }
+    public SpecialisMezo allapotvaltas(SpecialisMezo m){
+        for (var v : m.getSzomszedosMezok()) {
+            v.MezoTorol(m);
+        }
+        m.allapotValtas();
+
+        for (var v:m.getSzomszedosMezok()) {
+            v.MezoHozzaad(m);
+        }
+        kartya.setSzam(0);
+        for (var v:specialisMezok) {
+            v.setEffect(null);
+        }
+        return m;
+    }
+    public void specialisLepes(MouseEvent mouseEvent){
+        if (kartya.getSzam()==5){
+           SpecialisMezo m = allapotvaltas((SpecialisMezo) mouseEvent.getSource());
+           specialisKepvaltas(m);
+
+           jatek();
+        }
+        else {
+            lepes(mouseEvent);
+        }
+    }
+    public void specialisKepvaltas(SpecialisMezo m){
+        if (m.equals(tri1)||m.equals(tri2)){
+            tri(m);
+        }
+        else if(m.equals(duo1)||m.equals(duo2)){
+            duo(m);
+        }
+        else {
+            folyo(m);
+        }
+    }
+    public void tri(SpecialisMezo m){
+        Image kep;
+        if (m.getAllapot().equals(Allapotok.ELSO)){
+            kep= new  Image(getClass().getResourceAsStream("resources/triUt1.png"));
+        }
+        else if(m.getAllapot().equals(Allapotok.MASODIK)){
+            kep= new  Image(getClass().getResourceAsStream("resources/triUt2.png"));
+        }
+        else {
+            kep= new  Image(getClass().getResourceAsStream("resources/triUt3.png"));
+        }
+
+        if(m==tri1){
+            tri1.setImage(kep);
+        }
+        else {
+            tri2.setImage(kep);
+        }
+    }
+    public void duo(SpecialisMezo m){
+        Image kep;
+        if (m.getAllapot().equals(Allapotok.ELSO)){
+            kep= new  Image(getClass().getResourceAsStream("resources/duoHid1.png"));
+        }
+        else{
+            kep= new  Image(getClass().getResourceAsStream("resources/duoHid2.png"));
+        }
+        if(m==duo1){
+            duo1.setImage(kep);
+        }
+        else {
+            duo2.setImage(kep);
+        }
+    }
+    public void folyo(SpecialisMezo m){
+        Image kep;
+        if (m.getAllapot().equals(Allapotok.ELSO)){
+            kep= new  Image(getClass().getResourceAsStream("resources/folyo1.png"));
+        }
+        else{
+            kep= new  Image(getClass().getResourceAsStream("resources/folyo2.png"));
+        }
+        folyo.setImage(kep);
+    }
+    public void babuCsere(MouseEvent mouseEvent){
+        if(kartya.getSzam()==3) {
+            DropShadow shadow = new DropShadow();
+            shadow.setColor(Color.WHITE);
+            Babu babu = ((Babu) mouseEvent.getSource());
+            aktivJatekos.getBabu().setLayoutX(babu.getLayoutX());
+            aktivJatekos.getBabu().setLayoutY(babu.getLayoutY());
+            aktivJatekos.getBabu().setMezo(babu.getMezo());
+
+            ((Babu) mouseEvent.getSource()).setLayoutX(csereJatekos.getLayoutX());
+            ((Babu) mouseEvent.getSource()).setLayoutY(csereJatekos.getLayoutY());
+            ((Babu) mouseEvent.getSource()).setMezo(cseremezo);
+            for (var v:jatekosok) {
+                if(!v.equals(aktivJatekos)){
+                    v.getBabu().setEffect(null);
+                    v.getBabu().setEffect(shadow);
+                }
+            }
+            kartya.setSzam(0);
+            jatek();
+        }
     }
     public Image vizsgalatKarakter(String id){
         Image kep;
@@ -332,77 +539,123 @@ public class TablaController implements Initializable {
         }
         return kep;
     }
-
     public void jatek(){
+        dobas=0;
        DropShadow shadow = new DropShadow();
        shadow.setColor(Color.YELLOW);
+       shadow.setWidth(50);
+       shadow.setHeight(50);
        aktivJatekos=kovetkezoJatekos(aktivJatekos);
        aktivJatekos.getBabu().setEffect(shadow);
-       dobas=0;
-    }
 
-    public void mezokJelzese()
-    {
+    }
+    public void mezokJelzese(){
         lepesek= new ArrayList<>();
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.YELLOW);
+        shadow.setWidth(50);
+        shadow.setHeight(50);
         lepesek=lehetsegesLepesek(dobas,aktivJatekos.getBabu().getMezo(),aktivJatekos.getBabu().getMezo());
        for (var v: lepesek )
        {
-
            v.setEffect(shadow);
        }
     }
-
-    public void lepes(MouseEvent mouseEvent) {
-        if(lepesek.contains((Mezo) mouseEvent.getSource())&&dobas!=0)
-        {
-        DropShadow shadow = new DropShadow();
-        shadow.setColor(Color.WHITE);
-        if(((Mezo) mouseEvent.getSource()).getId().contains("mezo")){
-            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()-25);
-            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-170);
-        }
-        else if(((Mezo) mouseEvent.getSource()).getId().contains("kerdojel")){
+    public void kerdojelLepes(MouseEvent mouseEvent){
+        if(lepesek.contains((Mezo) mouseEvent.getSource())&&dobas!=0){
+            DropShadow shadow = new DropShadow();
+            shadow.setColor(Color.WHITE);
+            shadow.setWidth(50);
+            shadow.setHeight(50);
+            aktivJatekos.getBabu().setMezo((Mezo) mouseEvent.getSource());
             aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()+20);
             aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-100);
-        }
-        else if(((Mezo) mouseEvent.getSource()).getId().contains("tri")){
-            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()+50);
-            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-140);
-        }
-        else if(((Mezo) mouseEvent.getSource()).getId().contains("duo")){
-            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()+50);
-            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-120);
-        }
-        else if(((Mezo) mouseEvent.getSource()).getId().contains("folyo")){
-            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()+370);
-            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-50);
-        }
-        else if(((Mezo) mouseEvent.getSource()).getId().contains("cel")){
-            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX());
-            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY());
-        }
-        else if(((Mezo) mouseEvent.getSource()).getId().contains("start")){
-            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()+150);
-            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-150);
-        }
-
-        aktivJatekos.getBabu().setMezo((Mezo) mouseEvent.getSource());
-        aktivJatekos.getBabu().setEffect(shadow);
-        for (var v: lepesek){
-            v.setEffect(null);
-        }
-        jatek();
+            aktivJatekos.getBabu().setEffect(shadow);
+            for (var v: lepesek){
+                v.setEffect(null);
+            }
+            kartyalap((Mezo) mouseEvent.getSource());
         }
     }
+    public void sarkanyLepes(MouseEvent mouseEvent){
+        if (lepesek.contains((Mezo) mouseEvent.getSource())) {
+            sarkany.setMezo((Mezo) mouseEvent.getSource());
+            if (((Mezo) mouseEvent.getSource()).getId().contains("mezo")) {
+                sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() - 25);
+                sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 170);
+
+            } else if (((Mezo) mouseEvent.getSource()).getId().contains("tri")) {
+                sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 50);
+                sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 140);
+            } else if (((Mezo) mouseEvent.getSource()).getId().contains("duo")) {
+                sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 50);
+                sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 120);
+
+            } else if (((Mezo) mouseEvent.getSource()).getId().contains("folyo")) {
+                sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 370);
+                sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 50);
+
+            } else if (((Mezo) mouseEvent.getSource()).getId().contains("start")) {
+                sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 150);
+                sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 150);
+            }
+            for (var v : lepesek) {
+                v.setEffect(null);
+            }
+            sarkany.setEffect(null);
+            kartya.setSzam(0);
+            jatek();
+        }
+    }
+    public void lepes(MouseEvent mouseEvent) {
+        if(kartya.getSzam()==6){
+            sarkanyLepes(mouseEvent);
+        }
+        else {
+            if (lepesek.contains((Mezo) mouseEvent.getSource()) && dobas != 0) {
+                DropShadow shadow = new DropShadow();
+                shadow.setColor(Color.WHITE);
+                aktivJatekos.getBabu().setMezo((Mezo) mouseEvent.getSource());
+                if (((Mezo) mouseEvent.getSource()).getId().contains("mezo")) {
+                    aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() - 25);
+                    aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 170);
 
 
+                } else if (((Mezo) mouseEvent.getSource()).getId().contains("tri")) {
+                    aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 50);
+                    aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 140);
 
 
+                } else if (((Mezo) mouseEvent.getSource()).getId().contains("duo")) {
+                    aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 50);
+                    aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 120);
 
-    public Jatekos kovetkezoJatekos(Jatekos j)
-    {
+
+                } else if (((Mezo) mouseEvent.getSource()).getId().contains("folyo")) {
+                    aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 370);
+                    aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 50);
+
+                } else if (((Mezo) mouseEvent.getSource()).getId().contains("cel")) {
+                    aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX());
+                    aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY());
+
+
+                } else if (((Mezo) mouseEvent.getSource()).getId().contains("start")) {
+                    aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 150);
+                    aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 150);
+
+                }
+                aktivJatekos.getBabu().setMezo((Mezo) mouseEvent.getSource());
+                aktivJatekos.getBabu().setEffect(shadow);
+                for (var v : lepesek) {
+                    v.setEffect(null);
+                }
+
+                jatek();
+            }
+        }
+    }
+    public Jatekos kovetkezoJatekos(Jatekos j){
             if(jatekosok.get(jatekosok.size()-1).equals(j))
             {
                 j=jatekosok.get(0);
@@ -417,7 +670,8 @@ public class TablaController implements Initializable {
                 j=jatekosok.get(i+1);
             }
 
-            if(j.getBabu().getMezo().equals(cel)){
+            if(j.getBabu().getMezo().equals(cel)||j.isLephete()==false){
+                j.setLephete(true);
                 return kovetkezoJatekos(j);
             }
             else{
@@ -425,9 +679,7 @@ public class TablaController implements Initializable {
             }
 
     }
-
-    public List<Mezo> lehetsegesLepesek(int lepes, Mezo aktualisMezo,Mezo elozo)
-    {
+    public List<Mezo> lehetsegesLepesek(int lepes, Mezo aktualisMezo,Mezo elozo){
         List<Mezo> lehetsegesMezok = new ArrayList<>();
         List<Mezo> ut = aktualisMezo.getSzomszedosMezok();
 
@@ -449,21 +701,19 @@ public class TablaController implements Initializable {
 
         return lehetsegesMezok;
     }
-
     public List<Mezo> specialis(Mezo m1,Mezo m2) {
         List<Mezo> mezok= new LinkedList<>();
         mezok.add(m1);
         mezok.add(m2);
         return mezok;
     }
-
     public void tablaFeltolt(){
 
 
         mezoD1.MezoHozzaad(mezo17);
         mezoD3.MezoHozzaad(mezo7);mezoD3.MezoHozzaad(mezo18);
-        duo1=new DuoMezo(specialis(mezoD1,mezoD3),specialis(mezoD2,mezoD4));
-        System.out.println(duo1.getSzomszedosMezok());
+        duo1=new DuoMezo(specialis(mezoD2,mezoD4),specialis(mezoD1,mezoD3));
+        duo1.allapotValtas();
 
         mezoD22.MezoHozzaad(mezo39);
         mezoD44.MezoHozzaad(mezo43);
@@ -474,12 +724,15 @@ public class TablaController implements Initializable {
         folyo=new DuoMezo(specialis(kerdojel6,mezo9),specialis(mezo61,mezo19));
 
         mezoT11.MezoHozzaad(kerdojel2);mezoT11.MezoHozzaad(mezo31);
+        kerdojel2.MezoHozzaad(mezoT11);
         mezoT22.MezoHozzaad(mezo32);
         tri1=new TriMezo(specialis(mezoT11,mezoT22),specialis(mezoT22,mezoT33),specialis(mezoT33,mezoT11));
 
         mezoT1.MezoHozzaad(mezo10);mezoT1.MezoHozzaad(kerdojel8);
         mezoT3.MezoHozzaad(mezo21);
-        tri2=new TriMezo(specialis(mezoT1,mezoT3),specialis(mezoT1,mezoT2),specialis(mezoT2,mezoT3));
+        tri2=new TriMezo(specialis(mezoT1,mezoT2),specialis(mezoT2,mezoT3),specialis(mezoT1,mezoT3));
+        tri2.allapotValtas();
+        tri2.allapotValtas();
 
         kerdojel6.MezoHozzaad(mezo8);
         mezo9.MezoHozzaad(mezo10);
@@ -652,6 +905,20 @@ public class TablaController implements Initializable {
         tabla.mezoHozzaad(kerdojel10);
         tabla.mezoHozzaad(kerdojel11);
         tabla.mezoHozzaad(kerdojel12);
+        tabla.mezoHozzaad(mezoT1);
+        tabla.mezoHozzaad(mezoT2);
+        tabla.mezoHozzaad(mezoT3);
+        tabla.mezoHozzaad(mezoT11);
+        tabla.mezoHozzaad(mezoT22);
+        tabla.mezoHozzaad(mezoT33);
+        tabla.mezoHozzaad(mezoD1);
+        tabla.mezoHozzaad(mezoD2);
+        tabla.mezoHozzaad(mezoD3);
+        tabla.mezoHozzaad(mezoD4);
+        tabla.mezoHozzaad(mezoD11);
+        tabla.mezoHozzaad(mezoD22);
+        tabla.mezoHozzaad(mezoD33);
+        tabla.mezoHozzaad(mezoD44);
         tabla.mezoHozzaad(duo1);
         tabla.mezoHozzaad(duo2);
         tabla.mezoHozzaad(folyo);
@@ -660,7 +927,6 @@ public class TablaController implements Initializable {
 
         specialisMezok();
     }
-
     public void animation(){
         if(dobas==0) {
             Image kep = new Image(getClass().getResourceAsStream("resources/kocka1.png"));
@@ -683,7 +949,6 @@ public class TablaController implements Initializable {
             mezokJelzese();
         }
     }
-
     public Image Kocka(int szam){
         Image kep;
       if(szam==1){ kep=new Image(getClass().getResourceAsStream("resources/kocka1.png")); }
@@ -695,7 +960,6 @@ public class TablaController implements Initializable {
       
       return kep;
     }
-
     public void fomenu (){
         try{
 
@@ -711,7 +975,7 @@ public class TablaController implements Initializable {
         Stage currentStage = (Stage) btnMenu.getScene().getWindow();
         currentStage.close();
     }
-   public void bezar (){
+    public void bezar (){
        Stage currentStage = (Stage) btnMenu.getScene().getWindow();
        currentStage.close();
    }
