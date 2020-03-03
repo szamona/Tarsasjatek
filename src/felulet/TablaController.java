@@ -135,6 +135,7 @@ public class TablaController implements Initializable {
     public Label lblKartya;
     public Button btnOk;
     public Pane paneKartya;
+    public EgyszeruMezo tojas;
 
     Tabla tabla=new Tabla();
 
@@ -174,7 +175,7 @@ public class TablaController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-    public void getJatekos(String text1,String text2, String text3, String text4,Image kep1,Image kep2,Image kep3,Image kep4)
+    public void getJatekos4(String text1,String text2, String text3, String text4,Image kep1,Image kep2,Image kep3,Image kep4)
     {
         babu1 = new Babu();
         babu2 = new Babu();
@@ -218,6 +219,78 @@ public class TablaController implements Initializable {
         tablaFeltolt();
 
     }
+    public void getJatekos3(String text1,String text2, String text3,Image kep1,Image kep2,Image kep3)
+    {
+        babu1 = new Babu();
+        babu2 = new Babu();
+        babu3 = new Babu();
+
+
+        babu1.setMezo(start);
+        babu2.setMezo(start);
+        babu3.setMezo(start);
+
+
+        jatekos1 = new Jatekos(text1);
+        jatekos1.setBabu(babu1);
+
+        jatekos2 = new Jatekos(text2);
+        jatekos2.setBabu(babu2);
+
+        jatekos3 = new Jatekos(text3);
+        jatekos3.setBabu(babu3);
+
+
+        lblJatekos1.setText(text1);
+        lblJatekos2.setText(text2);
+        lblJatekos3.setText(text3);
+
+        jatekosok.add(jatekos1);
+        jatekosok.add(jatekos2);
+        jatekosok.add(jatekos3);
+
+        imgBabu1.setImage(kep1);
+        imgBabu2.setImage(kep2);
+        imgBabu3.setImage(kep3);
+
+        aktivJatekos=jatekosok.get(randomSzam.nextInt(3));
+        sarkany();
+        tablaFeltolt();
+
+    }
+    public void getJatekos2(String text1,String text2,Image kep1,Image kep2)
+    {
+        babu1 = new Babu();
+        babu2 = new Babu();
+
+
+        babu1.setMezo(start);
+        babu2.setMezo(start);
+
+
+        jatekos1 = new Jatekos(text1);
+        jatekos1.setBabu(babu1);
+
+        jatekos2 = new Jatekos(text2);
+        jatekos2.setBabu(babu2);
+
+
+        lblJatekos1.setText(text1);
+        lblJatekos2.setText(text2);
+
+        jatekosok.add(jatekos1);
+        jatekosok.add(jatekos2);
+
+
+        imgBabu1.setImage(kep1);
+        imgBabu2.setImage(kep2);
+
+
+        aktivJatekos=jatekosok.get(randomSzam.nextInt(3));
+        sarkany();
+        tablaFeltolt();
+
+    }
     public void sarkany(){
         Image kep = new Image(getClass().getResourceAsStream("resources/Sarkany.png"));
         sarkany = new Sarkany();
@@ -227,9 +300,10 @@ public class TablaController implements Initializable {
         sarkany.setLayoutX(1650);
         sarkany.setLayoutY(465);
         sarkany.setImage(kep);
+        sarkany.setMezo(tojas);
 
     }
-    public void getKarakter(String k1,String k2 ,String k3, String k4){
+    public void getKarakter4(String k1,String k2 ,String k3, String k4){
                 DropShadow arnyek=new DropShadow();
                 arnyek.setColor(Color.WHITE);
                 arnyek.setHeight(20);
@@ -270,6 +344,68 @@ public class TablaController implements Initializable {
                 babu4.setLayoutX(babu3.getLayoutX()+75);
                 babu4.setEffect(arnyek);
                 babu4.setOnMouseClicked(this::babuCsere);
+
+        jatek();
+    }
+    public void getKarakter3(String k1,String k2 ,String k3){
+        DropShadow arnyek=new DropShadow();
+        arnyek.setColor(Color.WHITE);
+        arnyek.setHeight(20);
+        arnyek.setWidth(20);
+
+        babu1.setImage(vizsgalatKarakter(k1));
+        apaneTabla.getChildren().add(babu1);
+        babu1.setFitHeight(210);
+        babu1.setFitWidth(110);
+        babu1.setLayoutY(start.getLayoutY()-100);
+        babu1.setLayoutX(start.getLayoutX());
+        babu1.setEffect(arnyek);
+        babu1.setOnMouseClicked(this::babuCsere);
+
+        babu2.setImage(vizsgalatKarakter(k2));
+        apaneTabla.getChildren().add(babu2);
+        babu2.setFitHeight(210);
+        babu2.setFitWidth(110);
+        babu2.setLayoutY(babu1.getLayoutY());
+        babu2.setLayoutX(babu1.getLayoutX()+75);
+        babu2.setEffect(arnyek);
+        babu2.setOnMouseClicked(this::babuCsere);
+
+        babu3.setImage(vizsgalatKarakter(k3));
+        apaneTabla.getChildren().add(babu3);
+        babu3.setFitHeight(210);
+        babu3.setFitWidth(110);
+        babu3.setLayoutY(babu2.getLayoutY());
+        babu3.setLayoutX(babu2.getLayoutX()+75);
+        babu3.setEffect(arnyek);
+        babu3.setOnMouseClicked(this::babuCsere);
+
+        jatek();
+    }
+    public void getKarakter2(String k1,String k2 ){
+        DropShadow arnyek=new DropShadow();
+        arnyek.setColor(Color.WHITE);
+        arnyek.setHeight(20);
+        arnyek.setWidth(20);
+
+        babu1.setImage(vizsgalatKarakter(k1));
+        apaneTabla.getChildren().add(babu1);
+        babu1.setFitHeight(210);
+        babu1.setFitWidth(110);
+        babu1.setLayoutY(start.getLayoutY()-100);
+        babu1.setLayoutX(start.getLayoutX());
+        babu1.setEffect(arnyek);
+        babu1.setOnMouseClicked(this::babuCsere);
+
+        babu2.setImage(vizsgalatKarakter(k2));
+        apaneTabla.getChildren().add(babu2);
+        babu2.setFitHeight(210);
+        babu2.setFitWidth(110);
+        babu2.setLayoutY(babu1.getLayoutY());
+        babu2.setLayoutX(babu1.getLayoutX()+75);
+        babu2.setEffect(arnyek);
+        babu2.setOnMouseClicked(this::babuCsere);
+
 
         jatek();
     }
@@ -578,11 +714,14 @@ public class TablaController implements Initializable {
         }
     }
     public void sarkanyLepes(MouseEvent mouseEvent){
+        sarkany.toFront();
+        sarkany.getMezo().setSzabad(true);
+
         if (lepesek.contains((Mezo) mouseEvent.getSource())) {
             sarkany.setMezo((Mezo) mouseEvent.getSource());
             if (((Mezo) mouseEvent.getSource()).getId().contains("mezo")) {
-                sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() - 25);
-                sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 170);
+                sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() - 20);
+                sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 130);
 
             } else if (((Mezo) mouseEvent.getSource()).getId().contains("tri")) {
                 sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 50);
@@ -602,6 +741,7 @@ public class TablaController implements Initializable {
             for (var v : lepesek) {
                 v.setEffect(null);
             }
+            sarkany.getMezo().setSzabad(false);
             sarkany.setEffect(null);
             kartya.setSzam(0);
             jatek();
@@ -632,8 +772,16 @@ public class TablaController implements Initializable {
 
 
                 } else if (((Mezo) mouseEvent.getSource()).getId().contains("folyo")) {
-                    aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 370);
-                    aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 50);
+                    if(folyo.getAllapot().equals(Allapotok.ELSO)){
+                        aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 370);
+                        aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 50);
+
+                    }
+                    else {
+                        aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 100);
+                        aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 50);
+
+                    }
 
                 } else if (((Mezo) mouseEvent.getSource()).getId().contains("cel")) {
                     aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX());
@@ -687,7 +835,7 @@ public class TablaController implements Initializable {
         {
             for (Mezo mezo : ut)
             {
-                if(!mezo.equals(aktualisMezo)&&!mezo.equals(elozo))
+                if(!mezo.equals(aktualisMezo)&&!mezo.equals(elozo)&&mezo.isSzabad())
                 {
 
                     lehetsegesMezok.addAll(lehetsegesLepesek(lepes-1,mezo,aktualisMezo));
@@ -758,7 +906,7 @@ public class TablaController implements Initializable {
      mezoT1.MezoHozzaad(tri2);
      mezoT2.MezoHozzaad(kerdojel11);
      kerdojel11.MezoHozzaad(mezoT2);kerdojel11.MezoHozzaad(mezo11);
-     mezo11.MezoHozzaad(mezo12);mezo11.MezoHozzaad(kerdojel1);
+     mezo11.MezoHozzaad(mezo12);mezo11.MezoHozzaad(kerdojel11);
      mezo12.MezoHozzaad(mezo13);mezo12.MezoHozzaad(mezo11);
      mezo13.MezoHozzaad(mezo14);mezo13.MezoHozzaad(mezo12);mezo13.MezoHozzaad(kerdojel9);
      mezo14.MezoHozzaad(mezo15);mezo14.MezoHozzaad(mezo13);
@@ -827,7 +975,7 @@ public class TablaController implements Initializable {
      mezo58.MezoHozzaad(mezo57);mezo58.MezoHozzaad(mezo59);
      mezo59.MezoHozzaad(mezo60);mezo59.MezoHozzaad(mezo58);
      mezo60.MezoHozzaad(cel);mezo60.MezoHozzaad(mezo59);
-
+     tojas.MezoHozzaad(start);
 
 
         tabla.mezoHozzaad(start);

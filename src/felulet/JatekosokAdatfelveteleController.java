@@ -72,7 +72,7 @@ public class JatekosokAdatfelveteleController implements Initializable {
             FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Tabla.fxml"));
             Parent root1 =  (Parent) fxmlLoader.load();
             TablaController controller = fxmlLoader.getController();
-            controller.getJatekos(txtJatekosEgyNev.textProperty().get(),
+            controller.getJatekos4(txtJatekosEgyNev.textProperty().get(),
                                      txtJatekosKettoNev.textProperty().get(),
                                      txtJatekosHaromNev.textProperty().get(),
                                      txtJatekosNegyNev.textProperty().get(),
@@ -80,7 +80,7 @@ public class JatekosokAdatfelveteleController implements Initializable {
                                      imgBabu2.getImage(),
                                      imgBabu3.getImage(),
                                      imgBabu4.getImage());
-           controller.getKarakter(veglegesKarakterek[0],veglegesKarakterek[1],veglegesKarakterek[2],veglegesKarakterek[3]);
+           controller.getKarakter4(veglegesKarakterek[0],veglegesKarakterek[1],veglegesKarakterek[2],veglegesKarakterek[3]);
             Stage stage = new Stage();
             stage.setTitle("Tarsasjatek");
             stage.setMaximized(true);

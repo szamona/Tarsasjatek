@@ -17,6 +17,7 @@ public abstract class Mezo extends ImageView
         this.szomszedosMezok= new LinkedList<Mezo>();
     }
 
+
     public Image getKep() { return kep; }
 
     public void setKep(Image kep) { this.kep = kep; }
