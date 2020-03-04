@@ -175,8 +175,7 @@ public class TablaController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-    public void getJatekos4(String text1,String text2, String text3, String text4,Image kep1,Image kep2,Image kep3,Image kep4)
-    {
+    public void getJatekos4(String text1,String text2, String text3, String text4,Image kep1,Image kep2,Image kep3,Image kep4) {
         babu1 = new Babu();
         babu2 = new Babu();
         babu3 = new Babu();
@@ -219,8 +218,7 @@ public class TablaController implements Initializable {
         tablaFeltolt();
 
     }
-    public void getJatekos3(String text1,String text2, String text3,Image kep1,Image kep2,Image kep3)
-    {
+    public void getJatekos3(String text1,String text2, String text3,Image kep1,Image kep2,Image kep3) {
         babu1 = new Babu();
         babu2 = new Babu();
         babu3 = new Babu();
@@ -258,8 +256,7 @@ public class TablaController implements Initializable {
         tablaFeltolt();
 
     }
-    public void getJatekos2(String text1,String text2,Image kep1,Image kep2)
-    {
+    public void getJatekos2(String text1,String text2,Image kep1,Image kep2) {
         babu1 = new Babu();
         babu2 = new Babu();
 
@@ -528,12 +525,20 @@ public class TablaController implements Initializable {
         }
         if(kartya.getSzam()==6){
             lepesek=new ArrayList<>();
+            int db;
 
             for (var v:tabla.getTablaMezoi()) {
-                if(!v.equals(babu1.getMezo())&&!v.equals(babu2.getMezo())&&!v.equals(babu3.getMezo())&&!v.equals(babu4.getMezo())&&!v.equals(cel)){
+                db=0;
+                for (var b:jatekosok) {
+                    if(v.equals(b.getBabu().getMezo())){
+                       db++;
+                    }
+                }
+                if (db==0){
                     lepesek.add(v);
                     v.setEffect(shadow);
                 }
+
             }
             shadow.setColor(Color.RED);
             sarkany.setEffect(shadow);

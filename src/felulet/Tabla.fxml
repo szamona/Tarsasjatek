@@ -29,7 +29,7 @@
             <Image url="@resources/start.png" />
          </image>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="cel" fitHeight="293.0" fitWidth="348.0" layoutX="832.0" layoutY="11.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" translateX="1.0" translateY="1.0">
+      <EgyszeruMezo fx:id="cel" fitHeight="293.0" fitWidth="348.0" layoutX="832.0" layoutY="-17.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" translateX="1.0" translateY="1.0">
          <image>
             <Image url="@resources/cel.png" />
          </image>
@@ -198,7 +198,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo27" fitHeight="56.0" fitWidth="64.0" layoutX="453.0" layoutY="911.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo27" fitHeight="66.0" fitWidth="64.0" layoutX="468.0" layoutY="890.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -230,7 +230,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo31" fitHeight="56.0" fitWidth="64.0" layoutX="478.0" layoutY="871.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo31" fitHeight="56.0" fitWidth="64.0" layoutX="389.0" layoutY="852.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -553,7 +553,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo16" fitHeight="56.0" fitWidth="64.0" layoutX="1151.0" layoutY="140.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo16" fitHeight="56.0" fitWidth="64.0" layoutX="1121.0" layoutY="160.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>

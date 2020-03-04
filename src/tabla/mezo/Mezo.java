@@ -1,9 +1,9 @@
 package tabla.mezo;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import java.util.LinkedList;
-import java.util.List;
+        import javafx.scene.image.Image;
+        import javafx.scene.image.ImageView;
+        import java.util.LinkedList;
+        import java.util.List;
 
 public abstract class Mezo extends ImageView
 {

@@ -18,9 +18,9 @@ public class MenuController implements Initializable
     public Button btnJatekInditasa;
     public Button btnSzabalyzat;
     public Button btnRanglista;
-    public Button btnBeallitasok;
+    //public Button btnBeallitasok;
     public Button btnKilepes;
-    private AnchorPane apaneTabla;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -31,7 +31,7 @@ public class MenuController implements Initializable
     {
       try{
 
-          FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("JatekosokAdatfelvetele.fxml"));
+          FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("JatekosSzamKivalasztas.fxml"));
           Parent root1 =  (Parent) fxmlLoader.load();
           Stage stage = new Stage();
           stage.setTitle("Tarsasjatek");

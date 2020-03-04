@@ -3,9 +3,10 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Tarsasjatek</output-path>
     <properties id="javafx-properties">
       <options>
-        <option name="appClass" value="E:\Tananyag\Szakdoga\Tarsasjatek\out\artifacts\Tarsasjatek\src\felulet\Main.java" />
+        <option name="appClass" value="felulet.Main" />
         <option name="description" value="" />
         <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="all" />
         <option name="title" value="" />
         <option name="vendor" value="" />
         <option name="version" value="" />

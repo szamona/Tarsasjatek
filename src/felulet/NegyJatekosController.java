@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class JatekosokAdatfelveteleController implements Initializable {
+public class NegyJatekosController implements Initializable {
 
     public Button btnJatekInditasa;
     public TextField txtJatekosEgyNev;
@@ -37,10 +37,7 @@ public class JatekosokAdatfelveteleController implements Initializable {
     public ImageView imgBabu2;
     public ImageView imgBabu3;
     public ImageView imgBabu4;
-    public Button btnJatekos4;
-    public Button btnJatekos2;
-    public Button btnJatekos3;
-    public Button btnJatekos1;
+
     public Pane paneKarakterek;
     public ImageView imgKarakter1;
     public ImageView imgKarakter2;
@@ -101,15 +98,15 @@ public class JatekosokAdatfelveteleController implements Initializable {
     }
 
 
-    public void karakterKivalaszt(ActionEvent actionEvent) {
+    public void karakterKivalaszt(MouseEvent mouseEvent) {
        paneKarakterek.setVisible(true);
-      if (actionEvent.getSource().equals(btnJatekos1)){
+      if (mouseEvent.getSource().equals(imgBabu1)){
           jatekos=1;
       }
-      else if (actionEvent.getSource().equals(btnJatekos2)){
+      else if (mouseEvent.getSource().equals(imgBabu2)){
             jatekos=2;
         }
-      else if (actionEvent.getSource().equals(btnJatekos3)){
+      else if (mouseEvent.getSource().equals(imgBabu3)){
           jatekos=3;
       }
       else {
