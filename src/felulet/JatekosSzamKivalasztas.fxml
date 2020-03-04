@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="302.0" prefWidth="703.0" style="-fx-background-image: url('file:E:/Tananyag/Szakdoga/Tarsasjatek/src/felulet/resources/papir.jpg');" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="felulet.JatekosSzamKivalasztasaController">
+   <children>
+      <ImageView fx:id="imgKetto" fitHeight="148.0" fitWidth="229.0" layoutX="12.0" layoutY="77.0" onMouseClicked="#ketJatekos" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/2jatekos.png" />
+         </image>
+         <effect>
+            <DropShadow radius="10.7425" width="23.97" />
+         </effect></ImageView>
+      <ImageView fx:id="imgHarom" fitHeight="200.0" fitWidth="228.0" layoutX="242.0" layoutY="77.0" onMouseClicked="#haromJatekos" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/3jatekos.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect></ImageView>
+      <ImageView fx:id="imgNegy" fitHeight="148.0" fitWidth="228.0" layoutX="470.0" layoutY="77.0" onMouseClicked="#negyJatekos" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/4jatekos.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <Button fx:id="btnVissza" layoutX="296.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#vissza" prefHeight="40.0" prefWidth="111.0" style="-fx-background-color: #e0d6c5;" text="Vissza">
+         <font>
+            <Font name="Rockwell" size="23.0" />
+         </font>
+         <effect>
+            <InnerShadow choke="0.12" height="36.57" radius="19.0825" width="41.76" />
+         </effect>
+      </Button>
+   </children>
+   <effect>
+      <InnerShadow choke="0.3" height="55.1" radius="35.575" width="89.2" />
+   </effect>
+</AnchorPane>

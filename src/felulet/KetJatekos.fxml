@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="btnHarom" prefHeight="348.0" prefWidth="487.0" style="-fx-background-image: url('file:E:/Tananyag/Szakdoga/Tarsasjatek/src/felulet/resources/papir.jpg');" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="felulet.KetJatekosController">
+    <children>
+        <Label layoutX="33.0" layoutY="181.0" text="1. játékos neve: ">
+            <font>
+                <Font name="Mistral" size="30.0" />
+            </font></Label>
+        <Label layoutX="296.0" layoutY="181.0" text="2. játékos neve: " textFill="#030303">
+            <font>
+                <Font name="Mistral" size="30.0" />
+            </font></Label>
+        <TextField fx:id="txtJatekosEgyNev" layoutX="18.0" layoutY="224.0" prefHeight="25.0" prefWidth="182.0">
+            <effect>
+                <DropShadow />
+            </effect></TextField>
+        <TextField fx:id="txtJatekosKettoNev" layoutX="282.0" layoutY="224.0" prefHeight="25.0" prefWidth="182.0">
+            <effect>
+                <DropShadow />
+            </effect></TextField>
+        <ImageView fx:id="imgBabu1" fitHeight="109.0" fitWidth="92.0" layoutX="65.0" layoutY="79.0" onMouseClicked="#karakterKivalaszt" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@resources/default.jpg" />
+            </image>
+            <effect>
+                <InnerShadow />
+            </effect></ImageView>
+        <ImageView fx:id="imgBabu2" fitHeight="109.0" fitWidth="92.0" layoutX="329.0" layoutY="79.0" onMouseClicked="#karakterKivalaszt" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@resources/default.jpg" />
+            </image>
+            <effect>
+                <InnerShadow />
+            </effect></ImageView>
+        <Button fx:id="btnVissza" layoutX="34.0" layoutY="284.0" mnemonicParsing="false" onAction="#vissza" prefHeight="34.0" prefWidth="149.0" style="-fx-background-color: #e0d6c5;" text="Vissza">
+            <font>
+                <Font name="Calisto MT" size="17.0" />
+            </font>
+            <effect>
+                <InnerShadow />
+            </effect>
+        </Button>
+        <Button fx:id="btnJatekInditasa" layoutX="299.0" layoutY="284.0" mnemonicParsing="false" onAction="#JatekInditas" prefHeight="34.0" prefWidth="149.0" style="-fx-background-color: #e0d6c5;" text="Indítás">
+            <effect>
+                <InnerShadow />
+            </effect>
+            <font>
+                <Font name="Calisto MT" size="17.0" />
+            </font>
+        </Button>
+        <Pane fx:id="paneKarakterek" layoutX="53.0" layoutY="30.0" prefHeight="288.0" prefWidth="381.0" style="-fx-background-color: #4a443c;" visible="false">
+            <children>
+                <ImageView fx:id="imgKarakter1" fitHeight="140.0" fitWidth="81.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#ikonKivalaszt" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@resources/ikon1.jpg" />
+                    </image>
+                    <effect>
+                        <InnerShadow />
+                    </effect>
+                </ImageView>
+                <ImageView fx:id="imgKarakter2" fitHeight="140.0" fitWidth="81.0" layoutX="104.0" layoutY="14.0" onMouseClicked="#ikonKivalaszt" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@resources/ikon2.jpg" />
+                    </image>
+                    <effect>
+                        <InnerShadow />
+                    </effect>
+                </ImageView>
+                <ImageView fx:id="imgKarakter3" fitHeight="140.0" fitWidth="81.0" layoutX="195.0" layoutY="14.0" onMouseClicked="#ikonKivalaszt" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@resources/ikon3.jpg" />
+                    </image>
+                    <effect>
+                        <InnerShadow />
+                    </effect>
+                </ImageView>
+                <ImageView fx:id="imgKarakter4" fitHeight="140.0" fitWidth="81.0" layoutX="286.0" layoutY="14.0" onMouseClicked="#ikonKivalaszt" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@resources/ikon4.jpg" />
+                    </image>
+                    <effect>
+                        <InnerShadow />
+                    </effect>
+                </ImageView>
+                <ImageView fx:id="imgKarakter5" fitHeight="140.0" fitWidth="81.0" layoutX="14.0" layoutY="130.0" onMouseClicked="#ikonKivalaszt" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@resources/ikon5.jpg" />
+                    </image>
+                    <effect>
+                        <InnerShadow />
+                    </effect>
+                </ImageView>
+                <ImageView fx:id="imgKarakter6" fitHeight="140.0" fitWidth="81.0" layoutX="104.0" layoutY="130.0" onMouseClicked="#ikonKivalaszt" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@resources/ikon6.jpg" />
+                    </image>
+                    <effect>
+                        <InnerShadow />
+                    </effect>
+                </ImageView>
+                <ImageView fx:id="imgKarakter7" fitHeight="140.0" fitWidth="81.0" layoutX="195.0" layoutY="130.0" onMouseClicked="#ikonKivalaszt" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@resources/ikon7.jpg" />
+                    </image>
+                    <effect>
+                        <InnerShadow />
+                    </effect>
+                </ImageView>
+                <ImageView fx:id="imgKarakter8" fitHeight="140.0" fitWidth="81.0" layoutX="286.0" layoutY="130.0" onMouseClicked="#ikonKivalaszt" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@resources/ikon8.jpg" />
+                    </image>
+                    <effect>
+                        <InnerShadow />
+                    </effect>
+                </ImageView>
+                <Button fx:id="btnPanelbezar" layoutX="111.0" layoutY="240.0" mnemonicParsing="false" onAction="#panelBezar" prefHeight="25.0" prefWidth="149.0" style="-fx-border-color: orange; -fx-background-color: #57534c;" text="Vissza" textFill="#ffb406">
+                    <effect>
+                        <InnerShadow>
+                            <color>
+                                <Color red="0.9210526347160339" green="0.5767949819564819" blue="0.18335770070552826" />
+                            </color>
+                        </InnerShadow>
+                    </effect>
+                    <font>
+                        <Font name="Calisto MT" size="17.0" />
+                    </font>
+                </Button>
+            </children>
+            <effect>
+                <InnerShadow>
+                    <color>
+                        <Color red="1.0" green="0.5807098746299744" blue="0.032407406717538834" />
+                    </color>
+                </InnerShadow>
+            </effect></Pane>
+    </children>
+    <effect>
+        <InnerShadow choke="0.27" height="82.62" radius="48.962500000000006" width="115.23">
+            <color>
+                <Color red="0.07894736528396606" green="0.07880726456642151" blue="0.07858186960220337" />
+            </color>
+        </InnerShadow>
+    </effect>
+</AnchorPane>
