@@ -723,7 +723,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-   <MenuButton fx:id="btnMenu" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="111.0" text="Menü">
+   <MenuButton fx:id="btnMenu" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="111.0" style="-fx-background-color: #35558d;" text="Menü" textFill="#cbdeff">
      <items>
        <MenuItem fx:id="menuFomenu" mnemonicParsing="false" onAction="#fomenu" text="Kilépés a főmenübe" />
        <MenuItem fx:id="bezaras" mnemonicParsing="false" onAction="#bezar" text="Kilépés a játékból" />
@@ -742,6 +742,13 @@
       <cursor>
          <Cursor fx:constant="DEFAULT" />
       </cursor>
+      <effect>
+         <InnerShadow height="35.83" radius="18.155" width="38.79">
+            <color>
+               <Color red="0.6620370149612427" green="0.8535493612289429" blue="1.0" />
+            </color>
+         </InnerShadow>
+      </effect>
    </MenuButton>
    <EgyszeruMezo fx:id="tojas" fitHeight="56.0" fitWidth="94.0" layoutX="1715.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true">
       <image>

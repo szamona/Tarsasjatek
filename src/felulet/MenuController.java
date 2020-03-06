@@ -1,12 +1,12 @@
 package felulet;
 
+import adatbazis.Kapcsolat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +25,11 @@ public class MenuController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
+    }
+
+    public void adatbázis(){
+        Kapcsolat k = new Kapcsolat();
+        k.selectAll();
     }
 
     public void Indit(ActionEvent actionEvent)

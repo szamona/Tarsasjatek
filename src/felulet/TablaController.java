@@ -1,5 +1,6 @@
 package felulet;
 
+import adatbazis.Kapcsolat;
 import jatek.Jatekos;
 import jatekTartozekok.Babu;
 import jatekTartozekok.DoboKocka;
@@ -175,6 +176,10 @@ public class TablaController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
+    public void adatbázis(){
+        Kapcsolat k = new Kapcsolat();
+        k.selectAll();
+    }
     public void getJatekos4(String text1,String text2, String text3, String text4,Image kep1,Image kep2,Image kep3,Image kep4) {
         babu1 = new Babu();
         babu2 = new Babu();
