@@ -471,6 +471,7 @@ public class TablaController implements Initializable {
         shadow.setColor(Color.YELLOW);
         shadow.setWidth(50);
         shadow.setHeight(50);
+        shadow.setSpread(0.4);
         paneKartya.toFront();
         paneKartya.setVisible(true);
         if(kartya.getSzam()==1){
@@ -504,14 +505,15 @@ public class TablaController implements Initializable {
             lblKartya.setText("Találtál egy teleportáló varázslatot! Cseréld ki a kalandorod helyét egy másik kalandoréval.");
         }
         if(kartya.getSzam()==4){
-            dobas=10;
+            Random randomSzam= new Random();
+            dobas=randomSzam.nextInt(7-1)+1;
             lepesek=lehetsegesLepesek(dobas,m,m);
             for (var v: lepesek )
             {
                 v.setEffect(null);
                 v.setEffect(shadow);
             }
-            lblKartya.setText("Lépj 10 mezőt!");
+            lblKartya.setText("Lépj "+dobas+" mezőt!");
             kartya.setSzam(0);
         }
         if(kartya.getSzam()==5){
@@ -691,6 +693,7 @@ public class TablaController implements Initializable {
        shadow.setColor(Color.YELLOW);
        shadow.setWidth(50);
        shadow.setHeight(50);
+       shadow.setSpread(0.4);
        aktivJatekos=kovetkezoJatekos(aktivJatekos);
        aktivJatekos.getBabu().setEffect(shadow);
 
@@ -701,6 +704,7 @@ public class TablaController implements Initializable {
         shadow.setColor(Color.YELLOW);
         shadow.setWidth(50);
         shadow.setHeight(50);
+        shadow.setSpread(0.4);
         lepesek=lehetsegesLepesek(dobas,aktivJatekos.getBabu().getMezo(),aktivJatekos.getBabu().getMezo());
        for (var v: lepesek )
        {
@@ -708,19 +712,32 @@ public class TablaController implements Initializable {
        }
     }
     public void kerdojelLepes(MouseEvent mouseEvent){
-        if(lepesek.contains((Mezo) mouseEvent.getSource())&&dobas!=0){
-            DropShadow shadow = new DropShadow();
-            shadow.setColor(Color.WHITE);
-            shadow.setWidth(50);
-            shadow.setHeight(50);
-            aktivJatekos.getBabu().setMezo((Mezo) mouseEvent.getSource());
-            aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX()+20);
-            aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY()-100);
-            aktivJatekos.getBabu().setEffect(shadow);
-            for (var v: lepesek){
-                v.setEffect(null);
+        if(kartya.getSzam()==6){
+            sarkany.toFront();
+            sarkany.getMezo().setSzabad(true);
+            sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() - 30);
+            sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 100);
+            sarkany.getMezo().setSzabad(false);
+            sarkany.setEffect(null);
+            kartya.setSzam(0);
+            jatek();
+        }
+        else {
+            if (lepesek.contains((Mezo) mouseEvent.getSource()) && dobas != 0) {
+                DropShadow shadow = new DropShadow();
+                shadow.setColor(Color.WHITE);
+                shadow.setWidth(50);
+                shadow.setHeight(50);
+                shadow.setSpread(0.4);
+                aktivJatekos.getBabu().setMezo((Mezo) mouseEvent.getSource());
+                aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() - 30);
+                aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 100);
+                aktivJatekos.getBabu().setEffect(shadow);
+                for (var v : lepesek) {
+                    v.setEffect(null);
+                }
+                kartyalap((Mezo) mouseEvent.getSource());
             }
-            kartyalap((Mezo) mouseEvent.getSource());
         }
     }
     public void sarkanyLepes(MouseEvent mouseEvent){
@@ -768,7 +785,7 @@ public class TablaController implements Initializable {
                 aktivJatekos.getBabu().setMezo((Mezo) mouseEvent.getSource());
                 if (((Mezo) mouseEvent.getSource()).getId().contains("mezo")) {
                     aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() - 25);
-                    aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 170);
+                    aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 182);
 
 
                 } else if (((Mezo) mouseEvent.getSource()).getId().contains("tri")) {
@@ -788,7 +805,7 @@ public class TablaController implements Initializable {
 
                     }
                     else {
-                        aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 100);
+                        aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 40);
                         aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 50);
 
                     }

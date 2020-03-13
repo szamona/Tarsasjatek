@@ -168,7 +168,7 @@ public class KetJatekosController implements Initializable {
 
         for (var v:karakterek)
         {
-            if (v.equals(beallitottak[0])||v.equals(beallitottak[1])||v.equals(beallitottak[2])){
+            if (v.equals(beallitottak[0])||v.equals(beallitottak[1])){
                 v.setDisable(true);
             }
             else {

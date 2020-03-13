@@ -22,7 +22,7 @@ public class Kapcsolat {
 
     private Connection connect() {
         // SQLite connection string
-        String url = "jdbc:sqlite://E:/Tananyag/Szakdoga/Tarsasjatek/src/adatbazis/adatok.sqlite";
+        String url = "jdbc:sqlite:src/adatbazis/adatok.sqlite";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
