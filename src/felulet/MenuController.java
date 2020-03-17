@@ -37,6 +37,7 @@ public class MenuController implements Initializable
             Stage stage = new Stage();
             stage.setTitle("Tarsasjatek");
             stage.setScene(new Scene(root1));
+
             stage.show();
 
         }catch (IOException e){ System.err.println("Az ablakot nem lehet megnyitni!\n"+e); }
