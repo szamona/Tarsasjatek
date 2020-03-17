@@ -28,9 +28,23 @@ public class MenuController implements Initializable
     }
 
     public void adatbázis(){
-        Kapcsolat k = new Kapcsolat();
-        k.selectAll();
+        try{
+
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Ranglista.fxml"));
+            Parent root1 =  (Parent) fxmlLoader.load();
+            RanglistaController controller = new RanglistaController();
+            controller.Kiir();
+            Stage stage = new Stage();
+            stage.setTitle("Tarsasjatek");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        }catch (IOException e){ System.err.println("Az ablakot nem lehet megnyitni!\n"+e); }
+
+        Stage currentStage = (Stage) btnRanglista.getScene().getWindow();
+        currentStage.close();
     }
+
 
     public void Indit(ActionEvent actionEvent)
     {

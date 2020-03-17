@@ -1,6 +1,15 @@
 package adatbazis;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Kapcsolat {
 
@@ -58,16 +67,97 @@ public class Kapcsolat {
         }
     }
 
-    public void selectAll(){
+    public  List<String> selectElsok(){
+        List<String> elsok = new ArrayList<>();
+        String sql = "SELECT elso FROM ranglista";
+
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+            while (rs.next()) {
+                elsok.add(rs.getString("elso"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return elsok;
+    }
+
+    public  List<String> selectMasodikok(){
+        List<String> masodikok = new ArrayList<>();
+        String sql = "SELECT masodik FROM ranglista";
+
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+            while (rs.next()) {
+                masodikok.add(rs.getString("masodik"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return masodikok;
+    }
+
+    public  List<String> selectHarmadikok(){
+        List<String> harmadikok = new ArrayList<>();
+        String sql = "SELECT harmadik FROM ranglista";
+
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+            while (rs.next()) {
+                harmadikok.add(rs.getString("harmadik"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return harmadikok;
+    }
+    public  List<String> selectNegyedikek(){
+        List<String> negyedikek = new ArrayList<>();
+        String sql = "SELECT negyedik FROM ranglista";
+
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+            while (rs.next()) {
+                negyedikek.add(rs.getString("negyedik"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return negyedikek;
+    }
+
+   /* public void selectAll(TableView tabla,TableColumn tb1,TableColumn tb2,TableColumn tb3,TableColumn tb4){
         String sql = "SELECT * FROM ranglista";
 
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
 
-            // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getString("elso") + "\t" +
+                String elso = rs.getString("elso");
+                String masodik = rs.getString("masodik");
+                String harmadik = rs.getString("harmadik");
+                String negyedik = rs.getString("negyedik");
+
+                tb1.setCellValueFactory(c -> new SimpleStringProperty(new String("elso")));
+                tb2.setCellValueFactory(c -> new SimpleStringProperty(new String("masodik")));
+                tb3.setCellValueFactory(c -> new SimpleStringProperty(new String("harmadik")));
+                tb4.setCellValueFactory(c -> new SimpleStringProperty(new String("negyedik")));
+
+                tabla.getItems().add(tb1);
+               /* System.out.println(rs.getString("elso") + "\t" +
                         rs.getString("masodik") + "\t" +
                         rs.getString("harmadik") + "\t" +
                         rs.getString("negyedik"));
@@ -75,6 +165,6 @@ public class Kapcsolat {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
 }

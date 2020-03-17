@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="571.0" style="-fx-background-image: url('file:E:/Tananyag/Szakdoga/Tarsasjatek/src/felulet/resources/ranglista1.jpg');" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="felulet.RanglistaController">
+<AnchorPane prefHeight="400.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="felulet.RanglistaController">
    <children>
-      <TableView fx:id="tableRanglista" layoutX="86.0" layoutY="14.0" prefHeight="373.0" prefWidth="400.0">
+      <ImageView fitHeight="617.0" fitWidth="701.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/ranglista1.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableRanglista" layoutX="150.0" layoutY="14.0" prefHeight="373.0" prefWidth="400.0">
         <columns>
-          <TableColumn prefWidth="100.0" style="-fx-font-style: italic; -fx-font-size: 17;" text="1.helyezett" />
-          <TableColumn prefWidth="100.0" style="-fx-font-size: 17; -fx-font-style: italic;" text="2.helyezett" />
-            <TableColumn prefWidth="100.0" style="-fx-font-size: 17; -fx-font-style: italic;" text="3.helyezett" />
-            <TableColumn prefWidth="100.0" style="-fx-font-size: 17; -fx-font-style: italic;" text="4.helyezett" />
+          <TableColumn fx:id="tb1" prefWidth="100.0" style="-fx-font-style: italic; -fx-font-size: 17;" text="1.helyezett" />
+          <TableColumn fx:id="tb2" prefWidth="100.0" style="-fx-font-size: 17; -fx-font-style: italic;" text="2.helyezett" />
+            <TableColumn fx:id="tb3" prefWidth="95.0" style="-fx-font-size: 17; -fx-font-style: italic;" text="3.helyezett" />
+            <TableColumn fx:id="tb4" prefWidth="100.0" style="-fx-font-size: 17; -fx-font-style: italic;" text="4.helyezett" />
         </columns>
       </TableView>
    </children>

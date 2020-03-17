@@ -178,7 +178,7 @@ public class TablaController implements Initializable {
 
     public void adatbázis(){
         Kapcsolat k = new Kapcsolat();
-        k.selectAll();
+        //k.selectAll();
     }
     public void getJatekos4(String text1,String text2, String text3, String text4,Image kep1,Image kep2,Image kep3,Image kep4) {
         babu1 = new Babu();

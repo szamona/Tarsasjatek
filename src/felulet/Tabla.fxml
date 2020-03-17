@@ -10,7 +10,12 @@
 <?import javafx.scene.text.*?>
 <?import tabla.mezo.*?>
 
-<AnchorPane fx:id="apaneTabla" maxHeight="1080.0" maxWidth="1920.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('file:E:/Tananyag/Szakdoga/Tarsasjatek/src/felulet/resources/Hatter.png');" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="felulet.TablaController">
+<AnchorPane fx:id="apaneTabla" maxHeight="1080.0" maxWidth="1920.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="felulet.TablaController">
+   <ImageView fitHeight="1089.0" fitWidth="1928.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@resources/Hatter.png" />
+      </image>
+   </ImageView>
       <EgyszeruMezo fx:id="mezo1" fitHeight="56.0" fitWidth="64.0" layoutX="1051.0" layoutY="1004.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4" translateX="1.0" translateY="1.0">
          <image>
          <Image url="@resources/probaut.png" />
