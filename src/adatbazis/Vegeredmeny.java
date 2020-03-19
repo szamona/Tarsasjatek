@@ -1,14 +1,14 @@
-package jatekTartozekok;
+package adatbazis;
 
 public class Vegeredmeny {
     private String elso;
-    private String masoik;
+    private String masodik;
     private String harmadik;
     private String negyedik;
 
-    public Vegeredmeny(String elso, String masoik, String harmadik, String negyedik) {
+    public Vegeredmeny(String elso, String masodik, String harmadik, String negyedik) {
         this.elso = elso;
-        this.masoik = masoik;
+        this.masodik = masodik;
         this.harmadik = harmadik;
         this.negyedik = negyedik;
     }
@@ -17,8 +17,8 @@ public class Vegeredmeny {
         return elso;
     }
 
-    public String getMasoik() {
-        return masoik;
+    public String getMasodik() {
+        return masodik;
     }
 
     public String getHarmadik() {

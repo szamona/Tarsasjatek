@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="278.0" style="-fx-background-image: url('file:E:/Tananyag/Szakdoga/Tarsasjatek/src/felulet/resources/papir.jpg');" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="felulet.MenuController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="278.0" style="-fx-background-color: #d7bb8f;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="felulet.MenuController">
    <children>
       <Button fx:id="btnJatekInditasa" layoutX="32.0" layoutY="42.0" mnemonicParsing="false" onAction="#Indit" prefHeight="45.0" prefWidth="214.0" style="-fx-background-color: #e0d6c5;" text="A játék indítása" textAlignment="CENTER">
          <font>
@@ -37,6 +37,6 @@
          </effect></Button>
    </children>
    <effect>
-      <InnerShadow choke="0.15" height="23.97" radius="35.205" width="118.85" />
+      <InnerShadow choke="0.03" height="148.5" radius="75.975" width="157.4" />
    </effect>
 </Pane>

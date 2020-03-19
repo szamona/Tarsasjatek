@@ -1,6 +1,5 @@
 package felulet;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +21,7 @@ public class JatekosSzamKivalasztasaController {
 
             try{
 
-                FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Menu.fxml"));
+                FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("fxmlFajlok/Menu.fxml"));
                 Parent root1 =  (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.setTitle("Tarsasjatek");

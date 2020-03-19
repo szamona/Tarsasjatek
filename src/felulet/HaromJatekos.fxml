@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="btnHarom" prefHeight="576.0" prefWidth="487.0" style="-fx-background-image: url('file:E:/Tananyag/Szakdoga/Tarsasjatek/src/felulet/resources/papir.jpg');" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="felulet.HaromJatekosController">
+<AnchorPane fx:id="btnHarom" prefHeight="576.0" prefWidth="487.0" style="-fx-background-color: #d7bb8f;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="felulet.HaromJatekosController">
     <children>
         <Label layoutX="33.0" layoutY="181.0" text="1. játékos neve: ">
             <font>
@@ -157,11 +157,7 @@
             </font>
         </Button>
     </children>
-    <effect>
-        <InnerShadow choke="0.27" height="82.62" radius="48.962500000000006" width="115.23">
-            <color>
-                <Color red="0.07894736528396606" green="0.07880726456642151" blue="0.07858186960220337" />
-            </color>
-        </InnerShadow>
-    </effect>
+   <effect>
+      <InnerShadow choke="0.14" height="124.78" radius="44.1" width="53.62" />
+   </effect>
 </AnchorPane>

@@ -1,23 +1,17 @@
 package adatbazis;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Kapcsolat {
 
-    /*public static void createNewDatabase() {
+    public static void createNewDatabase() {
 
-        String url = "jdbc:sqlite:E:/Tananyag/Szakdoga/Tarsasjatek/src/adatbazis/adatok.sqlite";
+        String url = "jdbc:sqlite:adatok.db";
 
-        try (Connection conn = DriverManager.getConnection(url)) {
+        try {
+            Connection conn = DriverManager.getConnection(url);
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
                 System.out.println("The driver name is " + meta.getDriverName());
@@ -27,32 +21,41 @@ public class Kapcsolat {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }*/
+    }
+
+      public static void createNewTable() {
+        String url = "jdbc:sqlite:adatok.db";
+          String sql = "CREATE TABLE IF NOT EXISTS ranglista (\n" +
+                " id integer PRIMARY KEY,\n" +
+                " elso text NOT NULL,\n" +
+                " masodik text NOT NULL,\n" +
+                " harmadik text NOT NULL,\n" +
+                " negyedik text NOT NULL\n" +
+                ");";
+        try {
+            Connection conn = DriverManager.getConnection(url);
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     private Connection connect() {
         // SQLite connection string
-        String url = "jdbc:sqlite:src/adatbazis/adatok.sqlite";
+        String url = "jdbc:sqlite:adatok.db";
+
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
+
             System.out.println(e.getMessage());
+
         }
         return conn;
     }
     public void insert(String elso,String masodik,String harmadik,String negyedik) {
-        if (elso.equals(null)){
-            elso="-";
-        }
-        if (masodik.equals(null)){
-            masodik="-";
-        }
-        if (harmadik.equals(null)){
-            harmadik="-";
-        }
-        if (negyedik.equals(null)){
-            negyedik="-";
-        }
         String sql = "INSERT INTO ranglista(elso,masodik,harmadik,negyedik) VALUES(?,?,?,?)";
 
         try (Connection conn = this.connect();
@@ -64,12 +67,14 @@ public class Kapcsolat {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            createNewDatabase();
+            createNewTable();
         }
     }
 
     public  List<String> selectElsok(){
         List<String> elsok = new ArrayList<>();
-        String sql = "SELECT elso FROM ranglista";
+        String sql = "SELECT elso FROM ranglista ORDER BY elso DESC ";
 
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -81,13 +86,15 @@ public class Kapcsolat {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            createNewDatabase();
+            createNewTable();
         }
         return elsok;
     }
 
     public  List<String> selectMasodikok(){
         List<String> masodikok = new ArrayList<>();
-        String sql = "SELECT masodik FROM ranglista";
+        String sql = "SELECT masodik FROM ranglista ORDER BY masodik DESC ";
 
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -99,13 +106,15 @@ public class Kapcsolat {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            createNewDatabase();
+            createNewTable();
         }
         return masodikok;
     }
 
     public  List<String> selectHarmadikok(){
         List<String> harmadikok = new ArrayList<>();
-        String sql = "SELECT harmadik FROM ranglista";
+        String sql = "SELECT harmadik FROM ranglista ORDER BY harmadik DESC";
 
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -117,12 +126,14 @@ public class Kapcsolat {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            createNewDatabase();
+            createNewTable();
         }
         return harmadikok;
     }
     public  List<String> selectNegyedikek(){
         List<String> negyedikek = new ArrayList<>();
-        String sql = "SELECT negyedik FROM ranglista";
+        String sql = "SELECT negyedik FROM ranglista ORDER BY negyedik DESC";
 
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -134,37 +145,10 @@ public class Kapcsolat {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            createNewDatabase();
+            createNewTable();
         }
         return negyedikek;
     }
-
-   /* public void selectAll(TableView tabla,TableColumn tb1,TableColumn tb2,TableColumn tb3,TableColumn tb4){
-        String sql = "SELECT * FROM ranglista";
-
-        try (Connection conn = this.connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-
-            while (rs.next()) {
-                String elso = rs.getString("elso");
-                String masodik = rs.getString("masodik");
-                String harmadik = rs.getString("harmadik");
-                String negyedik = rs.getString("negyedik");
-
-                tb1.setCellValueFactory(c -> new SimpleStringProperty(new String("elso")));
-                tb2.setCellValueFactory(c -> new SimpleStringProperty(new String("masodik")));
-                tb3.setCellValueFactory(c -> new SimpleStringProperty(new String("harmadik")));
-                tb4.setCellValueFactory(c -> new SimpleStringProperty(new String("negyedik")));
-
-                tabla.getItems().add(tb1);
-               /* System.out.println(rs.getString("elso") + "\t" +
-                        rs.getString("masodik") + "\t" +
-                        rs.getString("harmadik") + "\t" +
-                        rs.getString("negyedik"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }*/
 
 }

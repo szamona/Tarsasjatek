@@ -1,6 +1,7 @@
 package felulet;
 
 import adatbazis.Kapcsolat;
+import felulet.RanglistaController;
 import jatek.Jatekos;
 import jatekTartozekok.Babu;
 import jatekTartozekok.DoboKocka;
@@ -18,6 +19,8 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -34,7 +37,7 @@ import java.net.URL;
 import java.util.*;
 
 public class TablaController implements Initializable {
-    public List<Jatekos> jatekosok = new LinkedList<Jatekos>();
+    public List<Jatekos> jatekosok;
 
     public EgyszeruMezo start;
     public EgyszeruMezo cel;
@@ -124,6 +127,7 @@ public class TablaController implements Initializable {
     public EgyszeruMezo mezo59;
     public EgyszeruMezo mezo60;
     public EgyszeruMezo mezoD3;
+    public EgyszeruMezo mezo1;
 
     public DuoMezo folyo;
     public DuoMezo duo1;
@@ -138,9 +142,9 @@ public class TablaController implements Initializable {
     public Pane paneKartya;
     public EgyszeruMezo tojas;
 
-    Tabla tabla=new Tabla();
+    public Tabla tabla;
 
-    public DoboKocka kocka=new DoboKocka();
+    public DoboKocka kocka;
     public ImageView imgBabu1;
     public ImageView imgBabu2;
     public ImageView imgBabu3;
@@ -164,23 +168,91 @@ public class TablaController implements Initializable {
     public Babu csereJatekos;
     public Mezo cseremezo;
 
-    public Kartya kartya=new Kartya();
-    Sarkany sarkany;
+    public Kartya kartya;
+    public Sarkany sarkany;
+    public List<Jatekos> celban;
     public AnchorPane apaneTabla;
     public int dobas;
-    public EgyszeruMezo mezo1;
-    public Random randomSzam =new Random();
+
+    public Random randomSzam;
     public List<Mezo> lepesek;
-    public List<Mezo> specialisMezok= new ArrayList<>();
+    public List<Mezo> specialisMezok;
+    public MediaPlayer a;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        kartya = new Kartya();
+        randomSzam = new Random();
+        celban = new ArrayList<>();
+        specialisMezok= new ArrayList<>();
+        tabla = new Tabla();
+        kocka=new DoboKocka();
+        jatekosok = new LinkedList<Jatekos>();
     }
 
-    public void adatbázis(){
+    public void zene (){
+        URL resource = getClass().getResource("resources/music.mp3");
+        a =new MediaPlayer(new Media(resource.toString()));
+        a.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                a.seek(Duration.ZERO);
+            }
+        });
+        a.play();
+    }
+    public void adatbazis(){
         Kapcsolat k = new Kapcsolat();
-        //k.selectAll();
+        if(celban.size()==2){
+            k.insert(celban.get(0).getNev(),celban.get(1).getNev(),"-","-");
+        }
+        else if(celban.size()==3){
+            k.insert(celban.get(0).getNev(),celban.get(1).getNev(),celban.get(2).getNev(),"-");
+        }
+        else {
+            k.insert(celban.get(0).getNev(),celban.get(1).getNev(),celban.get(2).getNev(),celban.get(3).getNev());
+        }
+        try{
+
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Ranglista.fxml"));
+            Parent root1 =  (Parent) fxmlLoader.load();
+            RanglistaController controller = new RanglistaController();
+
+            Stage stage = new Stage();
+            stage.setTitle("Tarsasjatek");
+            stage.setScene(new Scene(root1));
+
+            stage.show();
+
+        }catch (IOException e){ System.err.println("Az ablakot nem lehet megnyitni!\n"+e); }
+
+        Stage currentStage = (Stage) cel.getScene().getWindow();
+        currentStage.close();
+
+    }
+    public void rendezes(){
+        List<Babu> babuk = new ArrayList<>();
+        for (var v:jatekosok) {
+            babuk.add(v.getBabu());
+        }
+        babuk.add(sarkany);
+       Babu csere;
+        for( int i = 0; i < babuk.size()-1; i++ )
+        {
+            for( int j = i+1; j < babuk.size(); j++ )
+            {
+                if( babuk.get(i).getLayoutY() > babuk.get(j).getLayoutY() )
+                {
+                    csere = babuk.get(i);
+                    babuk.set(i,babuk.get(j));
+                    babuk.set(j,csere);
+                }
+            }
+        }
+        for (var v:babuk) {
+            v.toFront();
+        }
     }
     public void getJatekos4(String text1,String text2, String text3, String text4,Image kep1,Image kep2,Image kep3,Image kep4) {
+       zene();
         babu1 = new Babu();
         babu2 = new Babu();
         babu3 = new Babu();
@@ -224,6 +296,7 @@ public class TablaController implements Initializable {
 
     }
     public void getJatekos3(String text1,String text2, String text3,Image kep1,Image kep2,Image kep3) {
+        zene();
         babu1 = new Babu();
         babu2 = new Babu();
         babu3 = new Babu();
@@ -262,6 +335,7 @@ public class TablaController implements Initializable {
 
     }
     public void getJatekos2(String text1,String text2,Image kep1,Image kep2) {
+        zene();
         babu1 = new Babu();
         babu2 = new Babu();
 
@@ -288,7 +362,7 @@ public class TablaController implements Initializable {
         imgBabu2.setImage(kep2);
 
 
-        aktivJatekos=jatekosok.get(randomSzam.nextInt(3));
+        aktivJatekos=jatekosok.get(randomSzam.nextInt(2));
         sarkany();
         tablaFeltolt();
 
@@ -497,7 +571,7 @@ public class TablaController implements Initializable {
             cseremezo=aktivJatekos.getBabu().getMezo();
 
             for (var v: jatekosok) {
-                if(!v.equals(aktivJatekos)){
+                if(!v.equals(aktivJatekos)&&!v.getBabu().getMezo().equals(cel)){
 
                     v.getBabu().setEffect(shadow);
                 }
@@ -688,6 +762,9 @@ public class TablaController implements Initializable {
         return kep;
     }
     public void jatek(){
+        if (celban.size()==jatekosok.size()){
+            adatbazis();
+        }
         dobas=0;
        DropShadow shadow = new DropShadow();
        shadow.setColor(Color.YELLOW);
@@ -710,6 +787,10 @@ public class TablaController implements Initializable {
        {
            v.setEffect(shadow);
        }
+       if (lepesek.size()==0){
+           dobas=0;
+           animation();
+       }
     }
     public void kerdojelLepes(MouseEvent mouseEvent){
         if(kartya.getSzam()==6){
@@ -720,6 +801,9 @@ public class TablaController implements Initializable {
             sarkany.getMezo().setSzabad(false);
             sarkany.setEffect(null);
             kartya.setSzam(0);
+            for (var v : lepesek) {
+                v.setEffect(null);
+            }
             jatek();
         }
         else {
@@ -813,6 +897,7 @@ public class TablaController implements Initializable {
                 } else if (((Mezo) mouseEvent.getSource()).getId().contains("cel")) {
                     aktivJatekos.getBabu().setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX());
                     aktivJatekos.getBabu().setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY());
+                    celban.add(aktivJatekos);
 
 
                 } else if (((Mezo) mouseEvent.getSource()).getId().contains("start")) {
@@ -825,7 +910,7 @@ public class TablaController implements Initializable {
                 for (var v : lepesek) {
                     v.setEffect(null);
                 }
-
+                rendezes();
                 jatek();
             }
         }
