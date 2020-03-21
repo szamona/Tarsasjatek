@@ -194,7 +194,7 @@ public class TablaController implements Initializable {
     }
 
     public void szabalyzat() {
-        File pdfFile = new File("..\\Tarsasjatek\\src\\felulet\\resources\\jatekszabaly.pdf");
+        File pdfFile = new File("jatekszabaly.pdf");
         if (pdfFile.exists()) {
             if (Desktop.isDesktopSupported()) {
                 try {
@@ -217,6 +217,7 @@ public class TablaController implements Initializable {
                 a.seek(Duration.ZERO);
             }
         });
+        a.setVolume(0.1);
         a.play();
     }
     public void nemitas(){
@@ -582,7 +583,7 @@ public class TablaController implements Initializable {
             aktivJatekos.getBabu().setLayoutX((double) (start).getLayoutX()+150);
             aktivJatekos.getBabu().setLayoutY((double) (start).getLayoutY()-150);
             aktivJatekos.getBabu().setMezo(start);
-            lblKartya.setText("A kalandorodat elátkozták.Visszakerülsz a startmezőre!");
+            lblKartya.setText("A kalandorodat elátkozták.\n Visszakerülsz a startmezőre!");
             kartya.setSzam(0);
             jatek();
         }
@@ -840,6 +841,7 @@ public class TablaController implements Initializable {
             for (var v : lepesek) {
                 v.setEffect(null);
             }
+            rendezes();
             jatek();
         }
         else {
@@ -856,8 +858,10 @@ public class TablaController implements Initializable {
                 for (var v : lepesek) {
                     v.setEffect(null);
                 }
+                rendezes();
                 kartyalap((Mezo) mouseEvent.getSource());
             }
+
         }
     }
     public void sarkanyLepes(MouseEvent mouseEvent){
@@ -899,6 +903,7 @@ public class TablaController implements Initializable {
             sarkany.getMezo().setSzabad(false);
             sarkany.setEffect(null);
             kartya.setSzam(0);
+            rendezes();
             jatek();
         }
     }
@@ -1102,7 +1107,7 @@ public class TablaController implements Initializable {
      mezo37.MezoHozzaad(mezo38);mezo37.MezoHozzaad(kerdojel5);
      mezo38.MezoHozzaad(mezo37);mezo38.MezoHozzaad(kerdojel7);
      mezo39.MezoHozzaad(mezoD22);mezo39.MezoHozzaad(mezo34);
-     mezoD22.MezoHozzaad(duo2);
+     //mezoD22.MezoHozzaad(duo2);
 
      mezoT33.MezoHozzaad(mezo40);
      mezo40.MezoHozzaad(mezo41); mezo40.MezoHozzaad(mezoT33);
@@ -1111,7 +1116,7 @@ public class TablaController implements Initializable {
      kerdojel4.MezoHozzaad(mezo42);kerdojel4.MezoHozzaad(mezoD11);
      mezoD11.MezoHozzaad(kerdojel4);
      mezoD22.MezoHozzaad(mezo39);
-     mezoD44.MezoHozzaad(duo2);
+     //mezoD44.MezoHozzaad(duo2);
      mezo43.MezoHozzaad(mezo44);mezo43.MezoHozzaad(mezoD44);
      mezo44.MezoHozzaad(kerdojel12);mezo44.MezoHozzaad(mezo43);
      kerdojel12.MezoHozzaad(mezo45);kerdojel12.MezoHozzaad(mezo44);

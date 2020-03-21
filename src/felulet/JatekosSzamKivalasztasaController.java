@@ -1,5 +1,6 @@
 package felulet;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -81,6 +82,23 @@ public class JatekosSzamKivalasztasaController {
         }catch (IOException e){ System.err.println("Az ablakot nem lehet megnyitni!\n"+e); }
 
         Stage currentStage = (Stage) imgKetto.getScene().getWindow();
+        currentStage.close();
+    }
+
+    public void vissza(ActionEvent actionEvent)
+    {
+        try{
+
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Menu.fxml"));
+            Parent root1 =  (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Tarsasjatek");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        }catch (IOException e){ System.err.println("Az ablakot nem lehet megnyitni!\n"+e); }
+
+        Stage currentStage = (Stage) btnVissza.getScene().getWindow();
         currentStage.close();
     }
 }

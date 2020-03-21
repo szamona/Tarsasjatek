@@ -28,7 +28,7 @@ public class MenuController implements Initializable
         
     }
     public void szabalyzat() {
-        File pdfFile = new File("..\\Tarsasjatek\\src\\felulet\\resources\\jatekszabaly.pdf");
+        File pdfFile = new File("jatekszabaly.pdf");
         if (pdfFile.exists()) {
             if (Desktop.isDesktopSupported()) {
                 try {

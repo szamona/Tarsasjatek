@@ -1,5 +1,6 @@
 package felulet;
 
+import adatbazis.Kapcsolat;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +16,9 @@ public class Main extends Application {
         primaryStage.setTitle("Menu");
         primaryStage.setScene(new Scene(root, 275, 300));
         primaryStage.show();
+        Kapcsolat db = new Kapcsolat();
+        db.createNewDatabase();
+        db.createNewTable();
     }
 
 

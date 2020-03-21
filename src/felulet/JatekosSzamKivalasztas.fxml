@@ -30,7 +30,7 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <Button fx:id="btnVissza" layoutX="296.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#vissza" prefHeight="40.0" prefWidth="111.0" style="-fx-background-color: #e0d6c5;" text="Vissza">
+      <Button fx:id="btnVissza" layoutX="296.0" layoutY="240.0" mnemonicParsing="false" onAction="#vissza" onMouseClicked="#vissza" prefHeight="40.0" prefWidth="111.0" style="-fx-background-color: #e0d6c5;" text="Vissza">
          <font>
             <Font name="Rockwell" size="23.0" />
          </font>
