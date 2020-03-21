@@ -97,7 +97,7 @@
             <Point3D x="2.0" />
          </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo17" fitHeight="56.0" fitWidth="64.0" layoutX="1323.0" layoutY="906.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo17" fitHeight="56.0" fitWidth="64.0" layoutX="1315.0" layoutY="911.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -105,7 +105,7 @@
             <Point3D x="2.0" />
          </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezoD1" fitHeight="56.0" fitWidth="64.0" layoutX="1251.0" layoutY="870.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezoD1" fitHeight="56.0" fitWidth="64.0" layoutX="1249.0" layoutY="870.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -121,7 +121,7 @@
             <Point3D x="2.0" />
          </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezoD2" fitHeight="56.0" fitWidth="64.0" layoutX="1376.0" layoutY="815.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezoD2" fitHeight="56.0" fitWidth="64.0" layoutX="1381.0" layoutY="825.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -129,7 +129,7 @@
             <Point3D x="2.0" />
          </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezoD3" fitHeight="56.0" fitWidth="64.0" layoutX="1249.0" layoutY="731.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezoD3" fitHeight="56.0" fitWidth="64.0" layoutX="1251.0" layoutY="737.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -206,7 +206,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo30" fitHeight="56.0" fitWidth="64.0" layoutX="592.0" layoutY="1005.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo30" fitHeight="56.0" fitWidth="64.0" layoutX="589.0" layoutY="1015.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -251,7 +251,7 @@
               <Image url="@resources/kocka1.png" />
           </image>
       </ImageView>
-      <EgyszeruMezo fx:id="mezoT33" fitHeight="56.0" fitWidth="64.0" layoutX="74.0" layoutY="916.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezoT33" fitHeight="56.0" fitWidth="64.0" layoutX="73.0" layoutY="921.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -259,7 +259,7 @@
             <Point3D x="2.0" />
          </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezoT22" fitHeight="56.0" fitWidth="64.0" layoutX="174.0" layoutY="779.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezoT22" fitHeight="56.0" fitWidth="64.0" layoutX="189.0" layoutY="789.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -283,7 +283,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="kerdojel2" fitHeight="161.0" fitWidth="165.0" layoutX="263.0" layoutY="896.0" onMouseClicked="#kerdojelLepes" pickOnBounds="true" preserveRatio="true">
+      <EgyszeruMezo fx:id="kerdojel2" fitHeight="161.0" fitWidth="165.0" layoutX="282.0" layoutY="886.0" onMouseClicked="#kerdojelLepes" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/kerdojel.png" />
          </image>
@@ -293,7 +293,7 @@
             <Image url="@resources/kerdojel.png" />
          </image>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo40" fitHeight="56.0" fitWidth="64.0" layoutX="30.0" layoutY="842.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo40" fitHeight="56.0" fitWidth="64.0" layoutX="14.0" layoutY="842.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -301,7 +301,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo41" fitHeight="56.0" fitWidth="64.0" layoutX="46.0" layoutY="753.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo41" fitHeight="56.0" fitWidth="64.0" layoutX="31.0" layoutY="763.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -309,7 +309,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo42" fitHeight="56.0" fitWidth="64.0" layoutX="122.0" layoutY="687.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo42" fitHeight="56.0" fitWidth="64.0" layoutX="110.0" layoutY="695.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -387,7 +387,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo7" fitHeight="56.0" fitWidth="64.0" layoutX="1353.0" layoutY="741.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo7" fitHeight="56.0" fitWidth="64.0" layoutX="1337.0" layoutY="731.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -395,7 +395,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo8" fitHeight="44.0" fitWidth="64.0" layoutX="1459.0" layoutY="737.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo8" fitHeight="44.0" fitWidth="64.0" layoutX="1427.0" layoutY="731.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -403,7 +403,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="kerdojel6" fitHeight="150.0" fitWidth="152.0" layoutX="1533.0" layoutY="615.0" onMouseClicked="#kerdojelLepes" pickOnBounds="true" preserveRatio="true">
+      <EgyszeruMezo fx:id="kerdojel6" fitHeight="150.0" fitWidth="152.0" layoutX="1490.0" layoutY="626.0" onMouseClicked="#kerdojelLepes" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/kerdojel.png" />
          </image>
@@ -437,7 +437,7 @@
             <Image url="@resources/kerdojel.png" />
          </image>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezoT2" fitHeight="56.0" fitWidth="64.0" layoutX="1527.0" layoutY="217.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezoT2" fitHeight="56.0" fitWidth="64.0" layoutX="1537.0" layoutY="233.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -450,7 +450,7 @@
             <Image url="@resources/kerdojel.png" />
          </image>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo11" fitHeight="56.0" fitWidth="64.0" layoutX="1549.0" layoutY="167.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo11" fitHeight="56.0" fitWidth="64.0" layoutX="1529.0" layoutY="177.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -458,7 +458,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo12" fitHeight="56.0" fitWidth="64.0" layoutX="1471.0" layoutY="157.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo12" fitHeight="56.0" fitWidth="64.0" layoutX="1445.0" layoutY="167.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -466,7 +466,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo13" fitHeight="56.0" fitWidth="64.0" layoutX="1381.0" layoutY="168.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo13" fitHeight="56.0" fitWidth="64.0" layoutX="1369.0" layoutY="189.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -474,7 +474,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo14" fitHeight="56.0" fitWidth="64.0" layoutX="1305.0" layoutY="140.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo14" fitHeight="56.0" fitWidth="64.0" layoutX="1249.0" layoutY="179.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -548,7 +548,7 @@
             <Image url="@resources/kerdojel.png" />
          </image>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo15" fitHeight="56.0" fitWidth="64.0" layoutX="1231.0" layoutY="160.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo15" fitHeight="56.0" fitWidth="64.0" layoutX="1166.0" layoutY="158.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -556,7 +556,7 @@
          <Point3D x="2.0" />
       </rotationAxis>
       </EgyszeruMezo>
-      <EgyszeruMezo fx:id="mezo16" fitHeight="56.0" fitWidth="64.0" layoutX="1121.0" layoutY="160.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
+      <EgyszeruMezo fx:id="mezo16" fitHeight="56.0" fitWidth="64.0" layoutX="1089.0" layoutY="150.0" onMouseClicked="#lepes" pickOnBounds="true" preserveRatio="true" rotate="52.4">
          <image>
             <Image url="@resources/probaut.png" />
          </image>
@@ -730,7 +730,7 @@
      <items>
        <MenuItem fx:id="menuFomenu" mnemonicParsing="false" onAction="#fomenu" text="Kilépés a főmenübe" />
        <MenuItem fx:id="bezaras" mnemonicParsing="false" onAction="#bezar" text="Kilépés a játékból" />
-         <MenuItem mnemonicParsing="false" text="Szabályzat" />
+         <MenuItem fx:id="szabaly" mnemonicParsing="false" onAction="#szabalyzat" text="Szabályzat" />
      </items>
       <contextMenu>
          <ContextMenu>
@@ -784,6 +784,18 @@
          </Button>
       </children>
    </Pane>
+   <Button fx:id="btnHang" layoutX="142.0" layoutY="20.0" mnemonicParsing="false" onAction="#nemitas" prefHeight="44.0" prefWidth="102.0" style="-fx-background-color: #35558d;" text="Zene" textFill="#cbdeff">
+      <font>
+         <Font name="System Bold" size="18.0" />
+      </font>
+      <effect>
+         <InnerShadow choke="0.1" height="41.76" radius="20.38" width="41.76">
+            <color>
+               <Color red="0.7960784435272217" green="0.8705882430076599" blue="1.0" />
+            </color>
+         </InnerShadow>
+      </effect>
+   </Button>
 
    <rotationAxis>
       <Point3D />

@@ -1,7 +1,6 @@
 package felulet;
 
 import adatbazis.Kapcsolat;
-import felulet.RanglistaController;
 import jatek.Jatekos;
 import jatekTartozekok.Babu;
 import jatekTartozekok.DoboKocka;
@@ -32,9 +31,12 @@ import javafx.scene.image.ImageView;
 import tabla.Tabla;
 import tabla.mezo.*;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.List;
 
 public class TablaController implements Initializable {
     public List<Jatekos> jatekosok;
@@ -178,6 +180,8 @@ public class TablaController implements Initializable {
     public List<Mezo> lepesek;
     public List<Mezo> specialisMezok;
     public MediaPlayer a;
+    public Button btnHang;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         kartya = new Kartya();
@@ -189,6 +193,22 @@ public class TablaController implements Initializable {
         jatekosok = new LinkedList<Jatekos>();
     }
 
+    public void szabalyzat() {
+        File pdfFile = new File("..\\Tarsasjatek\\src\\felulet\\resources\\jatekszabaly.pdf");
+        if (pdfFile.exists()) {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().open(pdfFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Awt Desktop is not supported!");
+            }
+        } else {
+            System.out.println("File is not exists!");
+        }
+    }
     public void zene (){
         URL resource = getClass().getResource("resources/music.mp3");
         a =new MediaPlayer(new Media(resource.toString()));
@@ -198,6 +218,15 @@ public class TablaController implements Initializable {
             }
         });
         a.play();
+    }
+    public void nemitas(){
+        if (a.isMute()){
+            a.setMute(false);
+
+        }
+        else {
+            a.setMute(true);
+        }
     }
     public void adatbazis(){
         Kapcsolat k = new Kapcsolat();
@@ -516,7 +545,7 @@ public class TablaController implements Initializable {
         duo1.setLayoutY(732);
         duo1.setOnMouseClicked(this::specialisLepes);
 
-        kep= new Image(getClass().getResourceAsStream("resources/duoHid1.png"));
+        kep= new Image(getClass().getResourceAsStream("resources/duoHid2.png"));
         duo2.setImage(kep);
         apaneTabla.getChildren().add(duo2);
         duo2.setId("duo2");
@@ -565,6 +594,9 @@ public class TablaController implements Initializable {
 
         }
         if (kartya.getSzam()==3){
+            if(jatekosok.size()-celban.size()>1){
+
+
             csereJatekos=new Babu();
             csereJatekos.setLayoutX(aktivJatekos.getBabu().getLayoutX());
             csereJatekos.setLayoutY(aktivJatekos.getBabu().getLayoutY());
@@ -577,6 +609,10 @@ public class TablaController implements Initializable {
                 }
             }
             lblKartya.setText("Találtál egy teleportáló varázslatot! Cseréld ki a kalandorod helyét egy másik kalandoréval.");
+            }
+            else {
+                kartyalap(m);
+            }
         }
         if(kartya.getSzam()==4){
             Random randomSzam= new Random();
@@ -611,7 +647,7 @@ public class TablaController implements Initializable {
             for (var v:tabla.getTablaMezoi()) {
                 db=0;
                 for (var b:jatekosok) {
-                    if(v.equals(b.getBabu().getMezo())){
+                    if(v.equals(b.getBabu().getMezo())||v.equals(cel)){
                        db++;
                     }
                 }
@@ -797,7 +833,7 @@ public class TablaController implements Initializable {
             sarkany.toFront();
             sarkany.getMezo().setSzabad(true);
             sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() - 30);
-            sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 100);
+            sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY());
             sarkany.getMezo().setSzabad(false);
             sarkany.setEffect(null);
             kartya.setSzam(0);
@@ -842,8 +878,16 @@ public class TablaController implements Initializable {
                 sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 120);
 
             } else if (((Mezo) mouseEvent.getSource()).getId().contains("folyo")) {
-                sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 370);
-                sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 50);
+                if(folyo.getAllapot().equals(Allapotok.ELSO)){
+                   sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 370);
+                    sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 50);
+
+                }
+                else {
+                   sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 40);
+                   sarkany.setLayoutY((double) ((Mezo) mouseEvent.getSource()).getLayoutY() - 50);
+
+                }
 
             } else if (((Mezo) mouseEvent.getSource()).getId().contains("start")) {
                 sarkany.setLayoutX((double) ((Mezo) mouseEvent.getSource()).getLayoutX() + 150);
@@ -978,6 +1022,8 @@ public class TablaController implements Initializable {
         mezoD22.MezoHozzaad(mezo39);
         mezoD44.MezoHozzaad(mezo43);
         duo2=new DuoMezo(specialis(mezoD22,mezoD44),specialis(mezoD11,mezoD33));
+        duo2.allapotValtas();
+
 
         kerdojel6.MezoHozzaad(mezo8);
         mezo9.MezoHozzaad(mezo10);
@@ -997,6 +1043,7 @@ public class TablaController implements Initializable {
         kerdojel6.MezoHozzaad(mezo8);
         mezo9.MezoHozzaad(mezo10);
         folyo=new DuoMezo(specialis(mezo9,kerdojel6),specialis(mezo61,mezo19));
+
 
      start.MezoHozzaad(mezo1);start.MezoHozzaad(mezo30);
      mezo1.MezoHozzaad(mezo2);mezo1.MezoHozzaad(start);

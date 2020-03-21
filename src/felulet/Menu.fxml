@@ -14,7 +14,7 @@
          <effect>
             <InnerShadow />
          </effect></Button>
-      <Button fx:id="btnSzabalyzat" layoutX="30.0" layoutY="102.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="214.0" style="-fx-background-color: #e0d6c5;" text="A játék szabályai">
+      <Button fx:id="btnSzabalyzat" layoutX="30.0" layoutY="102.0" mnemonicParsing="false" onAction="#szabalyzat" prefHeight="45.0" prefWidth="214.0" style="-fx-background-color: #e0d6c5;" text="A játék szabályai">
          <font>
             <Font name="Harrington" size="24.0" />
          </font>

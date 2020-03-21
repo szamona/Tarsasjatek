@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +27,22 @@ public class MenuController implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
     }
-
+    public void szabalyzat() {
+        File pdfFile = new File("..\\Tarsasjatek\\src\\felulet\\resources\\jatekszabaly.pdf");
+        if (pdfFile.exists()) {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().open(pdfFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Awt Desktop is not supported!");
+            }
+        } else {
+            System.out.println("File is not exists!");
+        }
+    }
     public void adatbázis(){
         try{
 
